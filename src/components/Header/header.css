@@ -1,0 +1,29 @@
+.language-img {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.header-navbar .btn:focus {
+    box-shadow:none;
+}
+
+.header-navbar .dropdown-menu{
+    width: 3em;
+}
+
+.dropdown-item{
+    padding: 0.55rem 1rem;
+}
+
+.language-img{
+    margin-right: 10px;
+}
+
+.dropdown .dropdown-toggle{
+    padding:5px;
+}
+.no-triangle .btn{
+    background-color: greenyellow;
+    display: none !important;
+}

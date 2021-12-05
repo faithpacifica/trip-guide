@@ -1,0 +1,19 @@
+.breadcrumb {
+  align-items: center;
+}
+
+.breadcrumb-item a {
+  text-decoration: none;
+  line-height: 21px;
+  color: #5f697c;
+  font-weight: bold;
+}
+
+.breadcrumb-item .active {
+   color: #B1B5C4;
+}
+
+.breadcrumb-item:before{
+  padding: 0;
+  display: none;
+}

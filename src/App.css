@@ -1,0 +1,36 @@
+html {
+  box-sizing: border-box;
+  height: 100%;
+  scroll-behavior: smooth;
+}
+
+*,*::before,*::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.5px;
+  /* background-color: ${(props) => props.theme.BodyBg};
+  TODO:bodyga ham dark mode da berish
+  */
+}
+
+img {
+  height: auto;
+}
+
+
+/* CONTAINER */
+.container {
+  width: 100%;
+  max-width: 1170px !important;
+  margin-left: auto;
+  margin-right: auto;
+}

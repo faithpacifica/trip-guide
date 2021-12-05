@@ -1,0 +1,123 @@
+.nav .nav-pills {
+    justify-content: space-between;
+}
+
+.nav-item .nav-link {
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 18px;
+    color: #84878B;
+    background-color: none;
+    padding: 0;
+    margin-right: 32px;
+}
+
+.nav-link.active {
+    color: #0e5bf4;;
+    font-weight: bold;
+    border-bottom: #316BFF solid 2px;
+    width: 80%;
+    position: relative;
+}
+
+.nav-link:hover .nav-link::after {
+    display: block;
+}
+
+.dropdown {
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.dropdown-header {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dropdown-body {
+    position: absolute;
+    background-color: #fff;
+    border-top: 1px solid #E5E8EC;
+    display: none;
+    z-index: 111;
+}
+
+.dropdown-body.open {
+    display: block;
+}
+
+.select-field {
+    display: block;
+    width: 332px !important;
+    margin-right: 8px;
+}
+
+.select-field select {
+    color: #989aa1;
+    font-size: 16px;
+    line-height: 24px;
+    width: 100%;
+    outline: none;
+    border: none;
+    background-color: transparent;
+}
+
+.check-field {
+    width: 250px !important;
+    margin-right: 8px;
+}
+
+.DayPickerInput input {
+    border: none;
+    background-color: transparent;
+}
+
+.passenger {
+    flex: end;
+    color: #3B3E44;
+    font-weight: bold;
+    position: relative;
+    border: none;
+    background-color: transparent;
+}
+
+.passenger.modalAppear + .passenger-modal {
+    display: block;
+}
+
+.passenger-modal {
+    padding: 21px 30px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 12px 60px rgba(74 237 245, 0.1);
+    border-radius: 16px;
+    width: 354px;
+    position: absolute;
+    bottom: 210px;
+    right: 0px;
+    display: none;
+}
+
+.check-field .btn {
+    padding: 0;
+    text-align: left;
+    width: 100%;
+}
+
+.check-field .dropdown-toggle::after {
+    content: none !important;
+}
+
+.dropdown-menu {
+    padding: 0;
+}
+
+.passengerSpan{
+    margin-right: 3px;
+}
+
+.option-box option{
+    background-color: rosybrown;
+    padding: 3px;
+}
