@@ -54,7 +54,7 @@ margin:0;
 const BestPlacesCard = () => {
     return (
         <PlacesCard className= 'places-card'>
-           <PlacesCardImg src="../../../assets/best-1.jpg" alt="city image" width= '70' height = '70' />
+           <PlacesCardImg src="../../../assets/img/best-1.jpg" alt="city image" width= '70' height = '70' />
            <PlacesCardTitle>Batu, East Java</PlacesCardTitle>
            <PlacesCardText><span>86 </span> Destinations</PlacesCardText>
         </PlacesCard>

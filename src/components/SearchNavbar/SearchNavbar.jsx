@@ -174,9 +174,17 @@ const SearchNavbar = () => {
 
   function handleFormSubmit(evt) {
     evt.preventDefault();
-    navigate("/hotellist");
-  }
+    console.log(locationRef.current.value);
+    console.log(checkOutRef.current.state.value);
+    console.log(checkInRef.current.state.value);
 
+    // TODO:tanlamasa WARNING CHIQAZSIN!!!
+
+    setTimeout(() => {
+      navigate("/hotellist");
+    }, 4000);
+  }
+  
   const handlePassengerModal = (el) => {
     console.log(el);
     if (el.target.className == "passenger" ) {
