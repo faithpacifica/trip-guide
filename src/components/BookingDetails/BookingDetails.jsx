@@ -295,7 +295,7 @@ const BookingDetails = () => {
       </PretotalPrice>
 
     <TotalPaymentBox>
-      <TotalPayment>Total payment</TotalPayment>
+      <TotalPayment>Total payment </TotalPayment>
       <TotalAmount>$300</TotalAmount>
     </TotalPaymentBox>
 
