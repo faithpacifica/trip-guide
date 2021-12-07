@@ -119,7 +119,7 @@ const Footer = () => {
             <LogoBox>
               <Logo>
                 <Link to="/">
-                  <img src="../../assets/favicon.png" alt="logo" width='40' height='38'/>
+                  <img src="../../assets/img/favicon.png" alt="logo" width='40' height='38'/>
                   TripGuide
                 </Link>
               </Logo>

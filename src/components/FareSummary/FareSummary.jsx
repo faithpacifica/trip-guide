@@ -170,7 +170,7 @@ const FareSummary = () => {
         </span>
       </StarWrapper>
 
-      <Image src="../../assets/swizerland.jpg" alt="city image" />
+      <Image src="../../assets/img/swizerland.jpg" alt="city image" />
 
       <Accomodation>1 bedroom + 1 private room</Accomodation>
 
@@ -204,7 +204,7 @@ const FareSummary = () => {
         </DetailsFields>
 
         <DetailsFields>
-          <BookedService>Ocupancy text and fee</BookedService>
+          <BookedService>Occupancy text and fee</BookedService>
           <DetailsFieldsAmount>-$125</DetailsFieldsAmount>
         </DetailsFields>
 

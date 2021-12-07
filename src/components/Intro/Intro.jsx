@@ -6,7 +6,7 @@ import styled from "styled-components";
 
 // ******************************************************
 const IntroSection = styled.section`
-background-image:url(../../assets/intro-bg.jpg);
+background-image:url(../../assets/img/intro-bg.jpg);
 background-repeat:no-repeat;
 background-position:center center;
 background-size:cover;

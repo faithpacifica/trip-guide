@@ -82,7 +82,7 @@ margin:0;
 const TopTourCard = () => {
     return (
         <TourTopCard className= 'top-tour__card'>
-        <TourTopImg src="../../../assets/toptour-1.jpg" alt="city image" width= '370' height = '495' />
+        <TourTopImg src="../../../assets/img/toptour-1.jpg" alt="city image" width= '370' height = '495' />
         <Shadow></Shadow>
         <button type='button'>Japan</button>
         <TourTopContent>

@@ -317,7 +317,7 @@ const Congratulations = () => {
           </ReserveInfo>
 
           <CityImage>
-            <img src="../../assets/swizerland.jpg" alt="city image" />
+            <img src="../../assets/img/swizerland.jpg" alt="city image" />
           </CityImage>
         </FinalInfo>
 

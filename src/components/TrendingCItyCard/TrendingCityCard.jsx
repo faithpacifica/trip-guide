@@ -79,7 +79,7 @@ const TrendingCityCard = () => {
   return (
     <TrendingCitiesCard className="trending-cities__card">
       <TrendingCityCardImg
-        src="../../../assets/trend-1.jpg"
+        src="../../../assets/img/trend-1.jpg"
         alt="city image"
         width="160"
         height="168"

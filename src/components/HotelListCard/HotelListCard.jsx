@@ -168,9 +168,9 @@ const BookNow = styled.div`
 const HotelListCard = () => {
   return (
     <ListCard>
-      <Img src="../../assets/hl-card-1.jpg" width="500" height="465" />
+      <Img src="../../assets/img/hl-card-1.jpg" width="500" height="465" />
       <HotelInfo>
-        <CardTitle>Zuich, Switzerland</CardTitle>
+        <CardTitle>Zurich, Switzerland</CardTitle>
         <Rating>
           <StarWrapper>
             <IconWrapper>
@@ -184,7 +184,7 @@ const HotelListCard = () => {
             <FiFlag
               style={{ color: "#84878B", fontSize: "16px", marginRight: "8px", marginTop: "3px" }}
             />
-            <span>Zuich town, Switzerland</span>
+            <span>Zurich town, Switzerland</span>
           </IconWrapper>
         </Rating>
 
@@ -199,7 +199,7 @@ const HotelListCard = () => {
                 }}
               />
             </IconWrapper>
-            <span>Zuich Hotel, Switzerland</span>
+            <span>Zurich Hotel, Switzerland</span>
           </ExploreLocation>
           <Calendar>
             <IconWrapper>
@@ -221,7 +221,7 @@ const HotelListCard = () => {
               style={{ color: "#84878B", fontSize: "20px", marginRight: "6px" }}
             />
           </IconWrapper>
-          <span>Depature from zuich</span>
+          <span>Departure from zurich</span>
         </Departure>
 
         <Services>

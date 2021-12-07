@@ -118,7 +118,7 @@ const Header = () => {
     <HeaderSection>
       <Logo>
         <Link to="/">
-        <img src="../../assets/favicon.png" alt="logo" width="40" height="38" />
+        <img src="../../assets/img/favicon.png" alt="logo" width="40" height="38" />
         TripGuide
       </Link>
       </Logo>
@@ -162,7 +162,7 @@ const Header = () => {
             <Dropdown.Toggle variant="" id="dropdown-basic">
               <img
                 className="language-img"
-                src={`../../assets/${lang}`}
+                src={`../../assets/img/${lang}`}
                 alt=""
               />
             </Dropdown.Toggle>
@@ -178,7 +178,7 @@ const Header = () => {
               >
                 <img
                   className="language-img"
-                  src="../../assets/flag-us.png"
+                  src="../../assets/img/flag-us.png"
                   alt="language"
                 />
                 English
@@ -193,7 +193,7 @@ const Header = () => {
               >
                 <img
                   className="language-img"
-                  src="../../assets/flag-russian.jpg"
+                  src="../../assets/img/flag-russian.jpg"
                   alt="language"
                 />
                 Russian
@@ -208,7 +208,7 @@ const Header = () => {
               >
                 <img
                   className="language-img"
-                  src="../../assets/flag-uzbek.jpg"
+                  src="../../assets/img/flag-uzbek.jpg"
                   alt="language"
                 />
                 Uzbek
@@ -227,7 +227,7 @@ const Header = () => {
 
         <Profile>
           <Avatar>
-            <img src="../../assets/profile-pic.jpg" alt="avatar pic" />
+            <img src="../../assets/img/profile-pic.jpg" alt="avatar pic" />
           </Avatar>
           <User>
             <Dropdown>

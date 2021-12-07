@@ -195,7 +195,7 @@ const HotelInfoDetails = () => {
         </TagsAndReview>
 
         <SingleHotelInfoTitle>Exclusive room in house</SingleHotelInfoTitle>
-        <HotelLocation>Zuich, Switzerland</HotelLocation>
+        <HotelLocation>Zurich, Switzerland</HotelLocation>
         <Hr />
         <Tabs
           defaultActiveKey="Description"

@@ -118,7 +118,7 @@ const HotelDetails = () => {
           </IconWrapper>
         </Rating>
 
-        <ImagesGrid><img src='../../assets/details-grid-1.jpg' width='' height='632' alt='hotel image'></img>
+        <ImagesGrid><img src='../../assets/img/details-grid-1.jpg' width='' height='632' alt='hotel image'></img>
         </ImagesGrid>
 
         <DetailsContent>

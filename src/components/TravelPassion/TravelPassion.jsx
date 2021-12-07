@@ -98,7 +98,7 @@ const TravelPassion = () => {
 
         <GridWrapper className="grid-wrapper">
           <ImgWrapper>
-            <Img src="../../../assets/passion-1.jpg" alt="city pic" width ='270' height='323' />
+            <Img src="../../../assets/img/passion-1.jpg" alt="city pic" width ='270' height='323' />
             <div>
               <h4>Beach Hobby</h4>
               <Review>
@@ -109,7 +109,7 @@ const TravelPassion = () => {
           </ImgWrapper>
 
           <ImgWrapper>
-            <Img src="../../../assets/passion-2.jpg" alt="city pic" width ='270' height='323' />
+            <Img src="../../../assets/img/passion-2.jpg" alt="city pic" width ='270' height='323' />
             <div>
               <h4>City Tours</h4>
               <Review>
@@ -119,7 +119,7 @@ const TravelPassion = () => {
             </div>
           </ImgWrapper>
           <ImgWrapper>
-            <Img src="../../../assets/passion-3.jpg" alt="city pic" width ='270' height='323' />
+            <Img src="../../../assets/img/passion-3.jpg" alt="city pic" width ='270' height='323' />
             <div>
               <h4>Hiking Trips</h4>
               <Review>
@@ -129,7 +129,7 @@ const TravelPassion = () => {
             </div>
           </ImgWrapper>
           <ImgWrapper>
-            <Img src="../../../assets/passion-4.jpg" alt="city pic" width ='270' height='323' />
+            <Img src="../../../assets/img/passion-4.jpg" alt="city pic" width ='270' height='323' />
             <div>
               <h4>Sports Trips</h4>
               <Review>

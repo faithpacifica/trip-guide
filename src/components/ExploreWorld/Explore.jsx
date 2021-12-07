@@ -47,6 +47,8 @@ const SectionTop = styled.div`
 // *****************************************************
 const Explore = () => {
 SwiperCore.use([Autoplay]);
+
+
   return (
     <ExploreWorld className="explore-world">
       <div className="container">

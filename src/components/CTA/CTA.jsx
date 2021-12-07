@@ -8,7 +8,7 @@ const CTASection = styled.section`
 padding:62px 90px;
 position:relative;
 top:125px;
-background-image:url(../../assets/cta-bg.png);
+background-image:url(../../assets/img/cta-bg.png);
 background-repeat:no-repeat;
 background-size:cover;
 background-color: #EE6D52;

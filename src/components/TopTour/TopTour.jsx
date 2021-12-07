@@ -39,8 +39,8 @@ const TourTopWrapper = styled.div`
   justify-content: space-between;
   margin-left: -15px;
   margin-right: -15px;
-  //   TODO:containerga sigmayapti
 `;
+
 const SectionTop = styled.div`
 display:flex;
 justify-content:space-between;

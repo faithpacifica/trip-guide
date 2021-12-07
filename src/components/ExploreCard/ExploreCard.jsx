@@ -106,7 +106,7 @@ const ExploreCard = () => {
   return (
     <ExploreWorldCard className="explore-card">
       <ExploreWorldCardImg
-        src="../../../assets/explore-1.jpg"
+        src="../../../assets/img/explore-1.jpg"
         alt="city image"
         width="242"
         height="152"

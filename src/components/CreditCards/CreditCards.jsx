@@ -127,7 +127,7 @@ const CreditCards = () => {
     <CardsSection>
       <SectionSubTitle>Your tour</SectionSubTitle>
       <Cards>
-        <img src="/../../assets/card1.png" alt="creditc card" />
+        <img src="/../../assets/img/card1.png" alt="credit card" />
         <GoCheck
           style={{
             position: "absolute",
@@ -139,16 +139,16 @@ const CreditCards = () => {
             top: "-5px",
           }}
         />
-        <img src="/../../assets/card2.png" alt="creditc card" />
-        <img src="/../../assets/card3.png" alt="creditc card" />
-        <img src="/../../assets/card4.png" alt="creditc card" />
+        <img src="/../../assets/img/card2.png" alt="credit card" />
+        <img src="/../../assets/img/card3.png" alt="credit card" />
+        <img src="/../../assets/img/card4.png" alt="credit card" />
       </Cards>
 
       <Hr />
     <CreditCardDateAndNumber>
        <CreditCardType>
-        <img src="/../../assets/visa.png" alt="creditc card" />
-        <img src="/../../assets/master.png" alt="creditc card" />
+        <img src="/../../assets/img/visa.png" alt="credit card" />
+        <img src="/../../assets/img/master.png" alt="credit card" />
       </CreditCardType>
 
       <CardDetails>
