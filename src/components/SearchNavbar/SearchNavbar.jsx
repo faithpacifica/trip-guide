@@ -17,7 +17,7 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { IoIosArrowDown } from "react-icons/io";
 import { useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
-// import Loader from '../Loader'
+import Loader from '../Loader';
 
 // ********************************************************
 const SearchNavbarSection = styled.section`
@@ -182,9 +182,12 @@ const SearchNavbar = () => {
 
     setTimeout(() => {
       navigate("/hotellist");
+      // option == null - warning
+  // isLoading
     }, 4000);
   }
   
+ 
   const handlePassengerModal = (el) => {
     console.log(el);
     if (el.target.className == "passenger" ) {
@@ -353,6 +356,7 @@ const SearchNavbar = () => {
                       <FloatingLabel controlId="floatingSelect">
                         <select ref={locationRef}>
                           <option disabled selected className="option">
+                            {/* TODO: */}
                             Where are you from?
                           </option>
                           <option value="1">Dubai</option>

@@ -38,7 +38,7 @@ const Review = styled.span`
 font-weight: 500;
 font-size: 14px;
 line-height: 21px;
-color: ${(props) => props.theme. TrendingCardReview};
+color: ${(props) => props.theme.TrendingCardReview};
 display:flex;
 align-items:center;
 margin-bottom:15px;
@@ -69,12 +69,12 @@ color: #84878B;
 `;
 
 const ExploreLocation = styled.p`
-font-weight: 500;
+font-weight:500;
 font-size: 14px;
 line-height: 21px;
 margin:0;
 margin-bottom:8px;
-color: ${(props) => props.theme. TrendingCardReview};
+color: ${(props) => props.theme.TrendingCardReview};
 display:flex;
 align-items:center;
 `;
@@ -82,7 +82,7 @@ align-items:center;
 const Rooms = styled.p`
 font-size: 14px;
 line-height: 21px;
-color: ${(props) => props.theme. TrendingCardReview};
+color: ${(props) => props.theme.TrendingCardReview};
 display:flex;
 align-items:center;
 `;

@@ -107,7 +107,7 @@ const CTA = () => {
                 </CTAContent>
                 <form action="#" onSubmit = {handleSubmit}>
                     <InputField className="input-field">
-                        <Input type="text"  ref ={ subscribeRef} placeholder='Type your email here'/>
+                        <Input type="text"  ref = { subscribeRef} placeholder='Type your email here'/>
                         <Button type="submit">Subscribe</Button>
                     </InputField>
                 </form>

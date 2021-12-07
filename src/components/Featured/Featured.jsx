@@ -239,7 +239,7 @@ const Featured = () => {
               <button>3.5</button>
               <div>
               <h4>Barcelona Tour</h4>
-              <p><img src='../../../assets/img/avatar-1.jpg' /> 196 Activities</p>
+              <p><img src='../../../assets/img/avatar-1.jpg' alt="city pic"/> 196 Activities</p>
               </div>
 
             </LeftTopBox>
@@ -250,7 +250,7 @@ const Featured = () => {
                 <button>3.5</button>
                 <div>
                 <h4>London, United State</h4>
-                <p><img src='../../../assets/img/avatar-2.jpg' /> 196 Activities</p>
+                <p><img src='../../../assets/img/avatar-2.jpg' alt="city pic" /> 196 Activities</p>
                 </div>
               </SemiImgWrapper>
 
@@ -259,7 +259,7 @@ const Featured = () => {
               <button>3.5</button>
               <div>
               <h4>Australia Tour</h4>
-              <p><img src='../../../assets/img/avatar-2.jpg' /> 196 Activities</p>
+              <p><img src='../../../assets/img/avatar-2.jpg' alt="city pic"/> 196 Activities</p>
               </div>
               </SemiImgWrapper>
 
@@ -290,7 +290,7 @@ const Featured = () => {
               <button>3.5</button>
               <div>
               <h4>Japan Tour</h4>
-              <p><img src='../../../assets/img/avatar-2.jpg' /> 196 Activities</p>
+              <p><img src='../../../assets/img/avatar-2.jpg' alt="city pic"/> 196 Activities</p>
               </div>
             </SmallImgWrapper>
           </GridWrapperRight>
