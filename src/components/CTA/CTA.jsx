@@ -94,7 +94,7 @@ const CTA = () => {
     const handleSubmit = (el)=>{
         el.preventDefault();
         console.log(subscribeRef.current.value);
-    }
+    } 
 
 
     return (
