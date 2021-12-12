@@ -9,10 +9,10 @@ import Trending from '../components/Trending/TrendingCities';
 import TravelPassion from '../components/TravelPassion/TravelPassion';
 import CTA from '../components/CTA/CTA';
 
-
 // ****************************************
 const Home = () => {
-    return (
+   
+ return (
         <div className = 'home'>
             <Intro />
             <SearchNavbar />
@@ -25,6 +25,6 @@ const Home = () => {
             <CTA />
         </div>
     );
-}
+ };
 
 export default Home;

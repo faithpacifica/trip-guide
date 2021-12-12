@@ -17,7 +17,8 @@ import Footer from "./components/Footer/Footer";
 import Flight from './pages/Flight';
 import Car from './pages/Car';
 import 'swiper/swiper-bundle.css';
-
+import 'react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css';
+import ScrollToTop from './components/ScrollToTop'
 // ************************************************************
 const App = () => {
   const [theme, toggleTheme] = useState('light');
@@ -25,16 +26,18 @@ const App = () => {
   return (
     <div className="App">
      <Suspense fallback=" loading">
-      <ThemeContext.Provider value={{ theme, toggleTheme }}>
-        <ThemeProvider theme ={theme === 'light' ? LightTheme : DarkTheme}>
+      <ThemeContext.Provider value={{ theme, toggleTheme }}  >
+        <ThemeProvider theme = {theme === 'light' ? LightTheme : DarkTheme}>
+          <div className={`app wrapper - ${theme}`}>
           <BrowserRouter>
+            <ScrollToTop />
               <Header />
               <Routes>
                 <Route exact path="/" element={<Home />} />
                 <Route path="/hotellist" element={<HotelList />} />
-                <Route path="/details" element={<HotelDetails />} />
-                <Route path="/payment" element={<HotelPayment />} />
-                <Route path="/congratulation" element={<Congratulations />} />
+                <Route path="/details/:id" element={<HotelDetails />} />
+                <Route path="/payment/:id" element={<HotelPayment />} />
+                <Route path="/congratulation/:id" element={<Congratulations />} />
                 <Route path="/profile" element={<MyProfile />} />
                 <Route path="/flight" element={<Flight />} />
                 <Route path="/car" element={<Car/>} />
@@ -42,6 +45,7 @@ const App = () => {
               </Routes>
               <Footer />
           </BrowserRouter>
+          </div>
         </ThemeProvider>
       </ThemeContext.Provider>
       </Suspense>

@@ -17,9 +17,7 @@ body {
   font-family: 'DM Sans', sans-serif;
   font-size: 16px;
   line-height: 1.5px;
-  /* background-color: ${(props) => props.theme.BodyBg};
-  TODO:bodyga ham dark mode da berish
-  */
+ 
 }
 
 img {
@@ -34,3 +32,12 @@ img {
   margin-left: auto;
   margin-right: auto;
 }
+
+.wrapper.dark svg{
+  fill:#dbdee7;
+}
+
+ .wrapper.light svg {
+  fill:black;
+}
+

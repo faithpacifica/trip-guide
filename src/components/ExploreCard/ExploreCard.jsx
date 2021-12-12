@@ -6,8 +6,6 @@ import { HiOutlineOfficeBuilding } from "react-icons/hi";
 
 // ****************************************************************
 const ExploreWorldCard = styled.section`
-// margin-left:15px;
-// margin-right:15px;
 background-color:${(props) => props.theme.ExploreWorldCard};
 border: 1px solid #E7ECF3;
 border-radius: 20px;
@@ -102,35 +100,35 @@ const IconWrapper = styled.div`
 `
 
 // ****************************************************************
-const ExploreCard = () => {
+const ExploreCard = ({exploreobj}) => {
   return (
     <ExploreWorldCard className="explore-card">
       <ExploreWorldCardImg
-        src="../../../assets/img/explore-1.jpg"
-        alt="city image"
+        src={`/assets/img/${exploreobj.image}`}
+        alt={exploreobj.name}
         width="242"
         height="152"
       />
       <ExploreContent>
         <Review>
-            <IconWrapper><AiFillStar style = {{color: '#FFD166', fontSize:'16px'}} /></IconWrapper>4.91 (147)
+            <IconWrapper><AiFillStar className="star" style = {{color: '#FFD166', fontSize:'16px'}} /></IconWrapper>{exploreobj.rating}
         </Review>
         <ContentInnerDiv>
           <div>
-            <ExploreWorldTitle>Comfort Space</ExploreWorldTitle>
+            <ExploreWorldTitle>{exploreobj.title}</ExploreWorldTitle>
             <ExploreWorldCardText>
-              <span>1.2 </span> km to Town Center
+              <span>{exploreobj.radius}</span> km to Town Center
             </ExploreWorldCardText>
             <ExploreLocation>
-                <IconWrapper><MdOutlinePinDrop style = {{color: '#B1B5C4', fontSize:'18px'}} /></IconWrapper>Turkey, Mamaris
+                <IconWrapper><MdOutlinePinDrop style = {{color: '#B1B5C4', fontSize:'18px'}} /></IconWrapper>{exploreobj.location}
             </ExploreLocation>
             <Rooms>
-                <IconWrapper><HiOutlineOfficeBuilding style = {{color: '#B1B5C4', fontSize:'18px'}}/></IconWrapper>Rooms available: 375
+                <IconWrapper><HiOutlineOfficeBuilding style = {{color: '#B1B5C4', fontSize:'18px'}}/></IconWrapper>Rooms available: {exploreobj.rooms}
             </Rooms>
           </div>
           <div>
             <Price>
-              $<span>210</span>
+              $<span>{exploreobj.price}</span>
             </Price>
           </div>
         </ContentInnerDiv>

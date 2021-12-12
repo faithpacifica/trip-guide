@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { GoCheck } from "react-icons/go";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 
 // **************************************
 const SectionSubTitle = styled.h4`
@@ -14,7 +15,6 @@ const SectionSubTitle = styled.h4`
   letter-spacing: -0.005em;
   color: ${(props) => props.theme.DetailsTitle};
 `;
-
 const CardsSection = styled.div``;
 const Cards = styled.div`
 display:flex:
@@ -32,14 +32,12 @@ img{
   border-radius: 6px;
 }
 `;
-
 const Hr = styled.hr`
   background-color: #e5e5e5;
   width: 524px;
   height: 2px;
   margin-bottom: 40px;
 `;
-
 const CreditCardDateAndNumber = styled.div`
   width:470px;
 `;
@@ -54,14 +52,14 @@ const CreditCardType = styled.div`
     height: 162px;
   }
 `;
-
 const CardDetails = styled.div`
   margin-bottom:19px;
+  background-color:transparent;
 `;
 const CardDetailsLabel = styled.div`
   font-size: 16px;
   line-height: 24px;
-  color: #353945;
+  color: ${(props) => props.theme.FeatureDetailsTitle};
   margin-bottom:12px;
 `;
 const CardNumber = styled.div`
@@ -69,13 +67,12 @@ const CardNumber = styled.div`
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
-  color: #4F4F4F;
+  color: ${(props) => props.theme.expireDate};
   padding:13px 20px;
-  background: #F4F5F6;
+  background:${(props) => props.theme.cardField};
   border: 1px solid #878CFF;
   border-radius: 10px;
 `;
-
 const Group = styled.div`
   display:flex;
   justify-content:space-between;
@@ -85,9 +82,9 @@ const ExpireDate = styled.div`
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
-  color: #4F4F4F;
+  color:${(props) => props.theme.expireDate};
   padding:13px 20px;
-  background: #F4F5F6;
+  background: ${(props) => props.theme.cardField};
   border: 1px solid #878CFF;
   border-radius: 10px;
 `;
@@ -96,13 +93,12 @@ const CVC = styled.div`
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
-  color: #4F4F4F;
+  color: ${(props) => props.theme.expireDate};
   padding:13px 20px;
-  background: #F4F5F6;
+  background: ${(props) => props.theme.cardField};
   border: 1px solid #878CFF;
   border-radius: 10px;
 `;
-
 const ConfirmButton = styled.button`
     font-family: Roboto,sans-serif;
     border:none;
@@ -122,10 +118,13 @@ const ConfirmButton = styled.button`
 `;
 
 // ****************************************
-const CreditCards = () => {
+const CreditCards = ({prop}) => {
+
+  const {t} = useTranslation();
+
   return (
     <CardsSection>
-      <SectionSubTitle>Your tour</SectionSubTitle>
+      <SectionSubTitle>{t('credit')}</SectionSubTitle>
       <Cards>
         <img src="/../../assets/img/card1.png" alt="credit card" />
         <GoCheck
@@ -152,13 +151,13 @@ const CreditCards = () => {
       </CreditCardType>
 
       <CardDetails>
-        <CardDetailsLabel>Card Number</CardDetailsLabel>
+        <CardDetailsLabel>{t('cardNumber')}</CardDetailsLabel>
         <CardNumber>5884 6241 4444 3333</CardNumber>
       </CardDetails>
 
       <Group>
        <CardDetails>
-        <CardDetailsLabel>Expire Date</CardDetailsLabel>
+        <CardDetailsLabel>{t('expirydate')}</CardDetailsLabel>
         <ExpireDate>MM / YY</ExpireDate>
       </CardDetails>
 
@@ -172,11 +171,11 @@ const CreditCards = () => {
 
 
       <Form.Group className="mb-3" id="formGridCheckbox">
-        <Form.Check type="checkbox" label="Save Card" aria-label="" />
+        <Form.Check type="checkbox" label={t('save')} aria-label="" />
       </Form.Group>
 
       <ConfirmButton type='button'>
-         <Link to="/congratulation">Confirm and reserve</Link>
+         <Link to ={`/congratulation/${prop.id}`}>{t('confirmandbook')}</Link>
       </ConfirmButton>
 
     </CardsSection>

@@ -27,3 +27,15 @@
     background-color: greenyellow;
     display: none !important;
 }
+
+.btn:hover {
+    color: #8c8f92;
+}
+
+.dropdown-menu .show {
+    padding: 5px;
+}
+.dropdown-menu .show a{
+    padding: 5px;
+    color:#84878B;
+}

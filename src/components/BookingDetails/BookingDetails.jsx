@@ -4,17 +4,17 @@ import styled from "styled-components";
 import { AiOutlineCalendar } from "react-icons/ai";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
-
+import { useTranslation } from 'react-i18next';
 
 
 // **************************************************
 const BookingSection = styled.section`
   max-width: 408px;
   width: 100%;
-  background-color: white;
+  background-color:  ${(props) => props.theme.BestCardHoverBg};
   padding: 20px 46px 31px;
   color: #353945;
-  border: 1px solid #eaeaea;
+  border: 1px solid  #eaeaea;
   border-radius: 20px;
   margin-top: 42px;
 `;
@@ -25,7 +25,7 @@ const Price = styled.div`
 const PriceAmount = styled.div`
   font-size: 34px;
   line-height: 20px;
-  color: #141416;
+  color:${(props) => props.theme.priceAmount}; 
   font-weight: bold;
   small {
     margin-right: 3px;
@@ -41,8 +41,10 @@ const PriceAmount = styled.div`
   }
 `;
 const Hr = styled.hr`
-  color: ${(props) => props.theme.SingleHotelInfoTitle};
-`;
+  margin:0;
+  margin-top:17px;
+  color: ${(props) => props.theme.bookingHr};
+`;  
 
 const Discount = styled.button`
   background: #145ce6;
@@ -79,17 +81,15 @@ const Subtitle = styled.h5`
   margin-top: 20px;
 `;
 
-const CheckOut = styled.div``;
-const CheckOutDate = styled.div``;
-
 const CheckInOutDate = styled.div`
   padding: 12px 18px 12px 14px;
-  background-color: #f4f5f6;
+  background-color: ${(props) => props.theme.checkinOutDate};
   border-radius: 10px;
+  color: ${(props) => props.theme.checkinOutDateColor};
   span {
     font-size: 14px;
     line-height: 21px;
-    color: #353945;
+    color: ${(props) => props.theme.checkinOutDateColor};
   }
 `;
 
@@ -105,7 +105,7 @@ const Number = styled.div`
 
 const PretotalPrice = styled.div`
   padding: 10px 22px;
-  background-color: #f4f5f6;
+  background-color: ${(props) => props.theme.checkinOutDate};;
   border-radius: 10px;
 `;
 const InnerWrapper = styled.div`
@@ -119,13 +119,13 @@ display: flex;
 const PriceDetail = styled.div`
   font-size: 14px;
   line-height: 21px;
-  color: #353945;
+  color: ${(props) => props.theme.checkinOutDateColor};
 `;
 const Amount = styled.div`
 span{
     font-size: 14px;
   line-height: 21px;
-  color: #353945;
+  color: ${(props) => props.theme.checkinOutDateColor};
 }
 `;
 
@@ -142,20 +142,21 @@ margin:0;
 font-weight: 500;
 font-size: 16px;
 line-height: 24px;
-color: #777E91;
-
+color: ${(props) => props.theme.checkinOutDateColor};
 `;
+
 const TotalAmount = styled.div`
   font-weight: 500;
   font-size: 16px;
   line-height: 27px;
+  color: ${(props) => props.theme.checkinOutDateColor};
 `;
 
 const BookNow = styled.button`
 border:none;
 background-color: #316BFF;
 border-radius: 12px;
-padding:11px 110px;
+padding:11px ;
 width:100%;
 
 margin-bottom:12px;
@@ -176,17 +177,20 @@ text-align:center;
 `;
 
 // *********************************************
-const BookingDetails = () => {
+const BookingDetails = ({prop}) => {
+
+  const {t} = useTranslation();
+
   return (
     <BookingSection>
       <Price>
         <PriceAmount>
           <div>
-            $142<small>/night</small>
+            ${prop.price}<small>/{t('NIGHT')}</small>
             <span> $184</span>
           </div>
         </PriceAmount>
-        <Discount>20% OFF</Discount>
+        <Discount>{t('discount')}</Discount>
       </Price>
       <Hr />
 
@@ -206,17 +210,17 @@ const BookingDetails = () => {
         </CheckInOut>
       </CheckInOutBox>
 
-      <Subtitle>Guest</Subtitle>
-      {/* TODO:shuni uzgartirish */}
-      <CheckInOutDate>2 Adults, 1 Children</CheckInOutDate>
+      <Subtitle>{t('guest')}</Subtitle>
+   
+      <CheckInOutDate>{t('personNumber')}</CheckInOutDate>
 
-      <Subtitle>Extra Features</Subtitle>
+      <Subtitle>{t('extraTitle')}</Subtitle>
       <ExtraFeatures>
         <Box>
           <Form.Group className="mb-3" id="formGridCheckbox">
             <Form.Check
               type="checkbox"
-              label="Allow to bring pet"
+              label={t('pet')}
               aria-label="option 1"
             />
           </Form.Group>
@@ -228,7 +232,7 @@ const BookingDetails = () => {
           <Form.Group className="mb-3" id="formGridCheckbox">
             <Form.Check
               type="checkbox"
-              label="Breakfast a day per person"
+              label={t('breackfestperson')}
               aria-label="option 2"
             />
           </Form.Group>
@@ -240,7 +244,7 @@ const BookingDetails = () => {
           <Form.Group className="mb-3" id="formGridCheckbox">
             <Form.Check
               type="checkbox"
-              label="Parking a day"
+              label= {t('parkingday')}
               aria-label="option 3"
             />
           </Form.Group>
@@ -252,42 +256,42 @@ const BookingDetails = () => {
           <Form.Group className="mb-3" id="formGridCheckbox">
             <Form.Check
               type="checkbox"
-              label="Parking a day"
+              label={t('parkingday')}
               aria-label="option 3"
             />
           </Form.Group>
           <Number>
-            <span>Free</span>
+            <span>{t('FREE')}</span>
           </Number>
         </Box>
       </ExtraFeatures>
 
-      <Subtitle>Price</Subtitle>
+      <Subtitle>{t('extraprice')}</Subtitle>
 
       <PretotalPrice>
         <InnerWrapper>
-          <PriceDetail>1 Nights</PriceDetail>
+          <PriceDetail>{t('nights')}</PriceDetail>
           <Amount>
             $<span>500</span>
           </Amount>
         </InnerWrapper>
 
         <InnerWrapper>
-          <PriceDetail>Discount 20%</PriceDetail>
+          <PriceDetail>{t('discount')}</PriceDetail>
           <Amount>
             $<span>200</span>
           </Amount>
         </InnerWrapper>
 
         <InnerWrapper>
-          <PriceDetail>Breakfast a day per person</PriceDetail>
+          <PriceDetail>{t('breackfestperson')}</PriceDetail>
           <Amount>
             $<span>10</span>
           </Amount>
         </InnerWrapper>
 
         <InnerWrapper>
-          <PriceDetail>Service fee</PriceDetail>
+          <PriceDetail>{t('servicefee')}</PriceDetail>
           <Amount>
             $<span>5</span>
           </Amount>
@@ -295,15 +299,17 @@ const BookingDetails = () => {
       </PretotalPrice>
 
     <TotalPaymentBox>
-      <TotalPayment>Total payment </TotalPayment>
+      <TotalPayment>{t('total')} </TotalPayment>
       <TotalAmount>$300</TotalAmount>
     </TotalPaymentBox>
 
-      <BookNow> <Link to="/payment">Book Now</Link></BookNow>
+      <BookNow> <Link to={ `/payment/${prop.id}` }>
+      {t('booknow')}
+        </Link></BookNow>
 
-      <Warn>You will not get charged yet</Warn>
+      <Warn> {t('charged')}</Warn>
     </BookingSection>
-  );
+  )
 };
 
 export default BookingDetails;

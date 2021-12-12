@@ -1,0 +1,153 @@
+{
+    "tours": [
+        { "id": 1, "name": "Japan", "place_count": 10,  "country": "Japan", "photo": "toptour-1.jpg" },
+        { "id": 2, "name": "Bali", "place_count": 10,  "country": "Indonesia", "photo": "toptour-2.jpg" },
+        { "id": 3, "name": "Spain", "place_count": 10,  "country": "Barcelona", "photo": "toptour-3.jpg" },
+        { "id": 4, "name": "Japan", "place_count": 10,  "country": "Japan", "photo": "toptour-1.jpg" },
+        { "id": 5, "name": "Japan", "place_count": 10,  "country": "Japan", "photo": "toptour-1.jpg" }
+    ],
+    "explore": [
+        { "id": 1, "title": "Comfort Space", "rating": "4.91 (147)", "price": 210, "location": "Turkey, Mamaris", "rooms": 375, "radius": "1.2 km", "image": "explore-1.jpg" },
+        { "id": 2, "title": "Comfort Space", "rating": "4.81 (147)", "price": 210, "location": "Turkey, Mamaris", "rooms": 375, "radius": "2 km", "image": "explore-2.jpg" },
+        { "id": 3, "title": "Comfort Space", "rating": "4.71 (147)", "price": 210, "location": "Turkey, Mamaris", "rooms": 375, "radius": "3 km", "image": "explore-3.jpg" },
+        { "id": 4, "title": "Comfort Space", "rating": "4.61 (147)", "price": 210, "location": "Turkey, Mamaris", "rooms": 375, "radius": "4 km", "image": "explore-4.jpg" },
+        { "id": 5, "title": "Comfort Space", "rating": "4.51 (147)", "price": 210, "location": "Turkey, Mamaris", "rooms": 375, "radius": "5 km", "image": "explore-1.jpg" },
+        { "id": 6, "title": "Comfort Space", "rating": "4.41 (147)", "price": 210, "location": "Turkey, Mamaris", "rooms": 375, "radius": "3 km", "image": "explore-2.jpg" }
+    ],
+    "cities": [
+        { "id": 1, "name": "Manila", "price": 250, "photo": "city1.jpg", "rating": "4.5 (36)" },
+        { "id": 2, "name": "San Francisco", "price": 250, "photo": "city2.jpg", "rating": "3.8 (116)" },
+        { "id": 3, "name": "Frankfurt main", "price": 250, "photo": "city3.jpg", "rating": "4.6 (98)" },
+        { "id": 4, "name": "Washington", "price": 250, "photo": "city4.jpg", "rating": "5 (3)" },
+        { "id": 5, "name": "Stockholm", "price": 250, "photo": "city5.jpg", "rating": "4.2 (36)" },
+        { "id": 6, "name": "Seattle", "price": 250, "photo": "city6.jpg", "rating": "4.8 (17)" }
+    ],
+    "hotels": [
+        { "id": 1, "name": "Гостиница Sahid Zarafshon", "rating": 4.0, "reviews": 7, "location": "Бухара, ул. М. Икбол, д. 4", "price": 58, "photo": "hotel1.jpg" },
+        { "id": 2, "name": "Гостиница Daniel Hill", "rating": 4.7, "reviews": 27, "location": "Ташкент, ул. Янги Куйлук, 18", "price": 75, "photo": "hotel2.jpg" },
+        { "id": 3, "name": "Гостиница Wyndham Tashkent", "rating": 4.5, "reviews": 283, "location": "Ташкент, ул. Амир Тимур, д. 7/8", "price": 150, "photo": "hotel3.jpg" },
+        { "id": 4, "name": "Simma Hotel Spa & Water Park", "rating": 3.7, "reviews": 9, "location": "Ташкент, ул. Навруз, 22", "price": 80, "photo": "hotel4.jpg" },
+        { "id": 5, "name": "Гостиница Qushbegi Plaza", "rating": 4.1, "reviews": 3, "location": "Ташкент, ул. Кушбеги, д. 6/1", "price": 85, "photo": "hotel5.jpg" },
+        { "id": 6, "name": "Гостиница Asia Bukhara", "rating": 3.8, "reviews": 373, "location": "Бухара, Ул. Мехтар Амбар, 55", "price": 45, "photo": "hotel6.jpg" }
+    ],
+
+    "popularFilters" : [
+        {
+            "id": 1,
+            "name": "Hotels",
+            "value": "Hotels"
+        },
+        {
+            "id": 2,
+            "name": "Breakfast and Dinner",
+            "value": "Breakfast and Dinner"
+        },
+        {
+            "id": 3,
+            "name": "Free Cancellation",
+            "value": "Free Cancellation"
+        },
+        {
+            "id": 4,
+            "name": "No prepayment",
+            "value": "No prepayment"
+        }
+    ],
+
+    "PropertyTypes" : [
+            {
+                "id": 1,
+                "label": "Apartments",
+                "value": "Apartments",
+                "name": "Apartments",
+                "price":108
+            },
+
+            {
+                "id": 2,
+                "label": "Hotels",
+                "value": "Hotels",
+                "name": "Hotels",
+                "price":141
+            },
+            {
+                "id": 3,
+                "label": "Resort",
+                "value": "Resort",
+                "name": "Resort",
+                "price":108
+            }
+        ],
+        
+    "Budget" : [
+            {
+                "id": 1,
+                "label": "Less than $75",
+                "value": "1",
+                "name": "Less than $75"
+            },
+            {
+                "id": 2,
+                "label": "$125 to 200",
+                "value": "2",
+                "name": "$125 to 200"
+            },
+            {
+                "id": 3,
+                "label": "$200 to $300",
+                "value": "3",
+                "name": "$200 to $300"
+            },
+            {
+                "id": 4,
+                "label": "Greater than $300",
+                "value": "4",
+                "name": "Greater than $300"
+            }
+        ],
+
+        "FacilitiesData" : [
+                {
+                    "id": 1,
+                    "label": "Outdoor Sports",
+                    "value": "Outdoor Sports",
+                    "name": "Outdoor Sports",
+                    "price":108
+                },
+                {
+                    "id": 2,
+                    "label": "Berbeque",
+                    "value": "Berbeque",
+                    "name": "Berbeque",
+                    "price":141
+                },
+                {
+                    "id": 3,
+                    "label": "Living Room",
+                    "value": "Living Room",
+                    "name": "Living Room",
+                    "price":108
+                },
+                {
+                    "id": 4,
+                    "label": "Room Service",
+                    "value": "Room Service",
+                    "name": "Room Service",
+                    "price":108
+                },
+                {
+                    "id": 5,
+                    "label": "Swimming Pool",
+                    "value": "Swimming Pool",
+                    "name": "Swimming Pool",
+                    "price":141
+                },
+                {
+                    "id": 6,
+                    "label": "Spa",
+                    "value": "Spa",
+                    "name": "Spa",
+                    "price":108
+                }
+            ]
+}

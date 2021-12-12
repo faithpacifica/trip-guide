@@ -2,12 +2,11 @@ import React from "react";
 import "./trendingcitycard.css";
 import styled from "styled-components";
 import { AiFillStar } from "react-icons/ai";
+import { useTranslation } from 'react-i18next';
 
 // *******************************************************************
 const TrendingCitiesCard = styled.section`
 width:535px;
-// margin-left:15px;
-// margin-right:15px;
 background-color: ${(props) => props.theme.TrendingCardBg};
 border-radius: 20px;
 padding:24px;
@@ -33,13 +32,13 @@ font-size: 24px;
 line-height: 36px;
 margin:0;
 margin-bottom:12px;
-color: ${(props) => props.theme. TrendingCardH};
+color: ${(props) => props.theme.TrendingCardH};
 `;
 
 const Review = styled.span`
 font-size: 16px;
 line-height: 24px;
-color:${(props) => props.theme. TrendingCardReview};
+color:${(props) => props.theme.TrendingCardReview};
 margin-bottom:22px;
 display:flex;
 `;
@@ -75,28 +74,31 @@ align-items:center;
 `;
 
 // **********************************************************************
-const TrendingCityCard = () => {
+const TrendingCityCard = ({ citiesobj }) => {
+
+  const {t} = useTranslation();
+
   return (
     <TrendingCitiesCard className="trending-cities__card">
       <TrendingCityCardImg
-        src="../../../assets/img/trend-1.jpg"
-        alt="city image"
+        src={`/assets/img/${citiesobj.photo}`}
+        alt={citiesobj.name}
         width="160"
         height="168"
       />
 
       <div>
-        <TrendingCitiesCardTitle>Comfort Space</TrendingCitiesCardTitle>
+        <TrendingCitiesCardTitle>{citiesobj.name}</TrendingCitiesCardTitle>
         <Review>
           <IconWrapper>
-            <AiFillStar style={{ color: "#FFD166", fontSize: "16px" }} />
+            <AiFillStar  className='star' style={{ color: "#FFD166", fontSize: "16px" }} />
           </IconWrapper>
-          4.91 (147)
+         {citiesobj.rating}
         </Review>
         <Price>
-          $ <span>250<small>/night</small></span>
+             $ <span>{citiesobj.price}<small>/{t('NIGHT')}</small></span>
         </Price>
-        <BookNowButton>Book Now</BookNowButton>
+        <BookNowButton>{t('booknow')}</BookNowButton>
 
       </div>
     </TrendingCitiesCard>

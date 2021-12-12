@@ -7,7 +7,6 @@ import Nav from "react-bootstrap/Nav";
 import { FaBed } from "react-icons/fa";
 import { RiFlightTakeoffLine } from "react-icons/ri";
 import { RiCarFill } from "react-icons/ri";
-import FloatingLabel from "react-bootstrap/FloatingLabel";
 import { useRef } from "react";
 import { useState, useEffect } from "react";
 import "react-calendar/dist/Calendar.css";
@@ -17,14 +16,18 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { IoIosArrowDown } from "react-icons/io";
 import { useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
-import Loader from '../Loader';
+// import Loader from '../Loader';
+import Select, { components } from "react-select";
+import { GrLocation } from "react-icons/gr";
+// import Tabs from "react-bootstrap/Tabs";
+// import Tab from "react-bootstrap/Tab";
 
 // ********************************************************
 const SearchNavbarSection = styled.section`
   background-color: ${(props) => props.theme.SearchNavbarBg};
   border-radius: 20px;
   padding: 30px 50px;
-  position: relative;
+  position: relative;s
   bottom: 100px;
   box-shadow: 0px 12px 60px rgba(89, 89, 89, 0.1);
   display: flex;
@@ -113,7 +116,6 @@ const Button = styled.button`
 `;
 
 // PASSENGER STYLES
-
 const PassengerModal = styled.div`
   background-color: ${(props) => props.theme.TrendingCardBg};
   // color:${(props) => props.theme.ExploreCardTitle}
@@ -154,6 +156,87 @@ const Left = styled.div`
   flex-direction: column;
 `;
 
+const SelectField = styled.div`
+background-color:${(props) => props.theme.selectBg} ;
+border-radius: 8px;
+white-space:nowrap;
+text-overflow:ellipsis;
+font-weight: 500;
+font-size: 18px;
+line-height: 24px;
+color:${(props) => props.theme.selectColor};
+&:not(:last-child) {
+    margin-right: 8px;
+}
+.css-b62m3t-container{
+    // width:260px;
+}
+.css-319lph-ValueContainer {
+    padding:0;
+}
+.css-6j8wv5-Input{
+    padding:0;
+    margin:0;
+}
+.css-tlfecz-indicatorContainer {
+    padding:0;
+}
+.css-1s2u09g-control{
+    min-height:19px;
+    padding-top:px;
+    background-color:transparent;
+    border:transparent;
+}
+.css-1hb7zxy-IndicatorsContainer {
+    display:none;
+}
+.css-14el2xx-placeholder {
+    color:${(props) => props.theme.selectColor};
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+}
+.css-1okebmr-indicatorSeparator {
+    background-color:transparent;
+    border:transparent;
+    margin:0;
+}
+.css-1f43avz-a11yText-A11yText{
+  border:none;
+}
+.css-26l3qy-menu{
+  background-color:white;
+  opacity:1;
+}
+.css-4ljt47-MenuList{
+  z-index:5555;
+}
+.css-yt9ioa-option{
+  background-color:${(props) => props.theme.selectBg} ;
+}
+.css-1s2u09g-control{
+  background-color:${(props) => props.theme.selectBg} ;
+}
+`;
+
+
+// ********************************************************
+const options = [
+  { value: "Dubai", label: "Dubai"},
+  { value: "France", label: "France"},
+  { value: "Bali", label: "Bali"},
+  { value: "Turkey",label: "Turkey"},
+  { value: "Malaysia",label: "Malaysia"}
+];
+
+const { Option } = components;
+const IconOption = props => (
+  <Option {...props}>
+     <GrLocation  className ='location' style={{color:'#9298A7', marginRight:'5px'}}/>
+    {props.data.label}
+  </Option>
+);
+
 // ********************************************************
 const SearchNavbar = () => {
   let navigate = useNavigate();
@@ -167,41 +250,54 @@ const SearchNavbar = () => {
   const checkInRef = useRef();
   const checkOutRef = useRef();
 
+  // const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
-    locationRef.current.value = "Where are you from?";
+    locationRef.current.value =  `Where are you from?`;
     checkInRef.current.DefaultValue = "Add in";
+    checkOutRef.current.DefaultValue = "Add in";
   });
 
   function handleFormSubmit(evt) {
     evt.preventDefault();
-    console.log(locationRef.current.value);
-    console.log(checkOutRef.current.state.value);
-    console.log(checkInRef.current.state.value);
 
-    // TODO:tanlamasa WARNING CHIQAZSIN!!!
+    if (locationRef.current.props.value === null || locationRef.current.props.value === ' '  ){
+      alert('select the city!')
+    } else {
+       console.log(locationRef.current.props.value);
+    }
+   
+
+    if (checkOutRef.current.state.value === null || checkOutRef.current.state.value === ''){
+      alert('select the check out date!')
+    } else {
+      console.log(checkOutRef.current.state.value);
+    }
+
+    if (checkInRef.current.state.value === null || checkInRef.current.state.value === ''){
+      alert('select the check in date!')
+    } else {
+      console.log(checkInRef.current.state.value);
+    }
+
 
     setTimeout(() => {
       navigate("/hotellist");
-      // option == null - warning
-  // isLoading
-    }, 4000);
+      // setIsLoading(false)
+    }, 3000);
+
   }
   
  
   const handlePassengerModal = (el) => {
     console.log(el);
-    if (el.target.className == "passenger" ) {
+    if (el.target.className === "passenger" ) {
       el.target.className = "passenger modalAppear";
-    } else if (el.target.className == "passenger modalAppear") {
+    } else if (el.target.className === "passenger modalAppear") {
       el.target.className = "passenger";
     }
   };
 
-  // useEffect(()=>{
-  //   if(checkOutRef.current.state){
-  //     // handleFormSubmit(checkOutRef.current.state)
-  //   }
-  // },[state]) // dependencyga checkout.currentni qo'yganim bilan u yengilansayam componentda useEffecti ichiga kirmayapti
 
   // *************************************************
   return (
@@ -217,6 +313,7 @@ const SearchNavbar = () => {
               <NavItemWrapper className="nav-item-wrapper">
                 <Nav.Item className="nav-item">
                   <Nav.Link href="/">
+                    {/* TODO:Tab qilish */}
                     <FaBed
                       style={{
                         color: "#84878B",
@@ -224,7 +321,7 @@ const SearchNavbar = () => {
                         marginRight: "8px",
                       }}
                     />
-                    Hotels
+                    {t('Hotels')}
                   </Nav.Link>
                 </Nav.Item>
 
@@ -236,8 +333,8 @@ const SearchNavbar = () => {
                         fontSize: "20px",
                         marginRight: "8px",
                       }}
-                    />{" "}
-                    Flight
+                    />
+                    {t('Flight')}
                   </Nav.Link>
                 </Nav.Item>
 
@@ -250,7 +347,7 @@ const SearchNavbar = () => {
                         marginRight: "8px",
                       }}
                     />
-                    Car Rental
+                    {t('CarRental')}
                   </Nav.Link>
                 </Nav.Item>
               </NavItemWrapper>
@@ -258,15 +355,15 @@ const SearchNavbar = () => {
               <button className="passenger" onClick={handlePassengerModal}>
                 <span className="passengerSpan">
                   {adult + infant + children}
-                </span>{" "}
-                Passenger <IoIosArrowDown  />
+                </span>
+                {t('passenger')}<IoIosArrowDown  />
               </button>
 
               <PassengerModal className="passenger-modal">
                 <LineWrapper className="line-wrapper">
                   <Left>
-                    <Type className="text">Adults</Type>
-                    <AgeType className="age">Ages 13 or above</AgeType>
+                    <Type className="text"> {t('Adults')}</Type>
+                    <AgeType className="age"> {t('13above')}</AgeType>
                   </Left>
                   <div>
                     <Button
@@ -291,8 +388,8 @@ const SearchNavbar = () => {
 
                 <LineWrapper className="line-wrapper">
                   <Left>
-                    <Type className="text">Children</Type>
-                    <AgeType className="age">Ages 2-12</AgeType>
+                    <Type className="text"> {t('Children')}</Type>
+                    <AgeType className="age"> {t('ageTill12')}</AgeType>
                   </Left>
                   <div>
                     <Button
@@ -317,8 +414,8 @@ const SearchNavbar = () => {
 
                 <LineWrapper className="line-wrapper">
                   <Left>
-                    <Type className="text">Infants</Type>
-                    <AgeType className="age">under 2</AgeType>
+                    <Type className="text"> {t('Infants')}</Type>
+                    <AgeType className="age"> {t('under2')}</AgeType>
                   </Left>
                   <div>
                     <Button
@@ -345,6 +442,8 @@ const SearchNavbar = () => {
           </Nav>
         </NavTop>
 
+{/* FORM */}
+
         <form onSubmit={handleFormSubmit}>
           <FormInner>
             <NavBottom className="nav-bottom">
@@ -352,18 +451,16 @@ const SearchNavbar = () => {
                 <div className="search-content">
                   <SelectWrapper className="select-wrapper">
                     <Field className="field select-field">
-                      <FieldLabel>Location</FieldLabel>
-                      <FloatingLabel controlId="floatingSelect">
-                        <select ref={locationRef}>
-                          <option disabled selected className="option">
-                            {/* TODO: */}
-                            Where are you from?
-                          </option>
-                          <option value="1">Dubai</option>
-                          <option value="2">Turkey</option>
-                          <option value="3">France</option>
-                        </select>
-                      </FloatingLabel>
+                      <FieldLabel> {t('Location')}</FieldLabel>
+
+                      <SelectField>
+                          <Select  ref={locationRef} 
+                          placeholder={t('Where')}
+                            options={options}
+                            components={{ Option: IconOption }}
+                           />
+                      </SelectField>
+
                     </Field>
 
                     <CgArrowsExchange
@@ -381,7 +478,7 @@ const SearchNavbar = () => {
 
                     <Field className="field check-field">
                       <FieldLabel> Check in</FieldLabel>
-                      <DayPickerInput ref={checkInRef} placeholder="Add Date" />
+                      <DayPickerInput ref={checkInRef} placeholder={t('AddDate')} />
                     </Field>
 
                     <CgArrowsExchange
@@ -401,7 +498,7 @@ const SearchNavbar = () => {
                       <FieldLabel> Check out</FieldLabel>
                       <DayPickerInput
                         ref={checkOutRef}
-                        placeholder="Add Date"
+                        placeholder={t('AddDate')}
                       />
                     </Field>
                   </SelectWrapper>
@@ -411,7 +508,7 @@ const SearchNavbar = () => {
 
             <DivBox className="div-box">
               <SubmitButton variant="" type="submit">
-                Search
+              {t('Search')} 
               </SubmitButton>
             </DivBox>
           </FormInner>

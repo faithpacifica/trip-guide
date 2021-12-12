@@ -57,3 +57,11 @@
     transform: translateY(-20px);
   }
 }
+
+
+.error-message{
+  font-size:30px;
+  color:rgb(194, 84, 84);
+  font-weight:900;
+}
+

@@ -2,6 +2,7 @@ import React from 'react';
 import "./cta.css";
 import styled from "styled-components";
 import { useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 
 // *************************************************************************
 const CTASection = styled.section`
@@ -11,7 +12,7 @@ top:125px;
 background-image:url(../../assets/img/cta-bg.png);
 background-repeat:no-repeat;
 background-size:cover;
-background-color: #EE6D52;
+background-color: #316BFF;
 border-radius: 16px;
 background-color: linear-gradient(110.89deg, rgba(207, 241, 255, 0.8) 30.76%, rgba(255, 255, 255, 0) 63.61%);
 `;
@@ -88,6 +89,7 @@ border:none;
 
 // ********************************************************************
 const CTA = () => {
+    const {t} = useTranslation();
 
     const subscribeRef = useRef();
 
@@ -102,13 +104,15 @@ const CTA = () => {
         <CTASection className="cta__section">
             <InnerBox className="cta-inner-box">
                 <CTAContent className="cta-content">
-                    <CTAtitle>Get our pro offers </CTAtitle>
-                    <CTAContentText>Create a visual identity for your company, and an overall brand</CTAContentText>
+                    <CTAtitle> {t('ctaTitle')}</CTAtitle>
+                    <CTAContentText>
+                    {t('ctaText')}
+                    </CTAContentText>
                 </CTAContent>
                 <form action="#" onSubmit = {handleSubmit}>
                     <InputField className="input-field">
                         <Input type="text"  ref = { subscribeRef} placeholder='Type your email here'/>
-                        <Button type="submit">Subscribe</Button>
+                        <Button type="submit">{t('subscribe')}</Button>
                     </InputField>
                 </form>
             </InnerBox>

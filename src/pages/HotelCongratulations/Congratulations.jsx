@@ -7,26 +7,30 @@ import { IoIosArrowForward } from "react-icons/io";
 import { BreadcrumpTheme } from "../../styled";
 import { Link } from "react-router-dom";
 import { AiFillStar } from "react-icons/ai";
+import { useParams } from "react-router-dom";
+import apiCalls from '../../config/api';
+import { useEffect, useState } from "react";
+import Loader from '../../components/Loader';
+import { useTranslation } from 'react-i18next';
+
 // *********************************************************
 const SuccessSection = styled.div`
   background-color: ${(props) => props.theme.DetailsBg};
   padding-top: 40px;
   padding-left: 75px;
   padding-right: 75px;
-  padding-bottom: 200px;
-  margin-bottom: -250px;
+  padding-bottom: 300px;
+  margin-bottom: -355px;
 `;
-
 const ListBreadcrumb = styled.div`
   padding-bottom: 70px;
 `;
-
 const CongratText = styled.div`
   font-weight: bold;
   font-size: 25px;
   line-height: 21px;
   margin-bottom: 20px;
-  color: #3b3e44;
+  color: ${(props) => props.theme.SuccessTitle};
 `;
 const SectionTitle = styled.h2`
   margin: 0;
@@ -34,9 +38,8 @@ const SectionTitle = styled.h2`
   font-weight: 500;
   font-size: 48px;
   line-height: 60px;
-  color: #3b3e44;
-`;
-
+  color: ${(props) => props.theme.SuccessTitle};
+`
 const Divider = styled.hr`
   margin: 0;
   width: 822px;
@@ -44,14 +47,19 @@ const Divider = styled.hr`
   background-color: #e7ecf3;
   margin-bottom: 37px;
 `;
+const ShortDivider = styled.hr`
+  margin: 0;
+  margin-bottom: 24px;
+  height: 1px;
+  background-color: #e7ecf3;
+`;
 const Text = styled.div`
   margin-bottom: 27px;
   font-weight: bold;
   font-size: 34px;
   line-height: 44px;
-  color: #23262f;
+  color: ${(props) => props.theme.successCity};
 `;
-
 const AccomodationInfo = styled.div`
   display: flex;
   margin-bottom: 34px;
@@ -81,7 +89,6 @@ const StarWrapper = styled.div`
     font-weight: normal;
   }
 `;
-
 const Accomodation = styled.p`
   margin: 0;
   font-weight: 500;
@@ -89,29 +96,25 @@ const Accomodation = styled.p`
   line-height: 24px;
   color: #84878b;
 `;
-
 const FinalInfo = styled.div`
   display: flex;
   justify-content: space-between;
 `;
-
 const ReserveInfo = styled.div`
   width: 380px;
   // margin-right: 117px;
-  margin-bottom:30px;
+  margin-bottom: 30px;
 `;
-
 const CityImage = styled.div`
   width: 670px;
-  height: 403px;
-  object-position: cover;
+  // height: 403px;
+  object-fit: cover;
   img {
     width: 100%;
     display: flex;
     border-radius: 20px;
   }
 `;
-
 const GoToYourHome = styled.span`
   background-color: #3b71fe;
   padding: 13.5px 36px;
@@ -126,7 +129,6 @@ const GoToYourHome = styled.span`
     color: #ffffff;
   }
 `;
-
 const TravelDateInfo = styled.div`
   width: 380px;
   display: flex;
@@ -136,7 +138,7 @@ const TravelDateInfo = styled.div`
 const TourDate = styled.div`
   padding: 7.7px 20px;
   width: 184px;
-  background-color: #f4f4f6;
+  background-color: ${(props) => props.theme.ExploreWorldCard};
   border-radius: 15px;
   display: flex;
   flex-direction: column;
@@ -145,7 +147,7 @@ const TourDate = styled.div`
     font-weight: 500;
     font-size: 16px;
     line-height: 24px;
-    color: #141416;
+    color: ${(props) => props.theme.calendarLabel};
     display: block;
   }
   input {
@@ -161,11 +163,10 @@ const TourDate = styled.div`
     }
   }
 `;
-
 const Traveller = styled.div`
   width: 160px;
   padding: 7.7px 20px;
-  background-color: #f4f4f6;
+  background-color: ${(props) => props.theme.ExploreWorldCard};
   border-radius: 15px;
   display: flex;
   flex-direction: column;
@@ -173,7 +174,7 @@ const Traveller = styled.div`
     font-weight: 500;
     font-size: 16px;
     line-height: 24px;
-    color: #141416;
+    color: ${(props) => props.theme.calendarLabel};
     display: inline-block;
   }
   input {
@@ -189,50 +190,72 @@ const Traveller = styled.div`
     }
   }
 `;
-
 const ReserveDetails = styled.div`
   padding: 19px 25px;
-  background-color: #f4f4f6;
-  border: 1px solid #f0efef;
+  background-color: ${(props) => props.theme.ExploreWorldCard};
+  border: 1px solid ${(props) => props.theme.ExploreWorldCard};
   border-radius: 10px;
 `;
-
 const ReserveDetailsTitle = styled.h5`
   font-weight: bold;
   font-size: 28px;
   line-height: 41px;
   margin: 0;
   margin-bottom: 24px;
-  color: #23262f;
+  color: ${(props) => props.theme.successCity};
 `;
-
 const ReserveTypeWrapper = styled.div`
   display: flex;
   justify-content: space-between;
 
   &:not(:last-child) {
-      margin-bottom:22px;
+    margin-bottom: 22px;
   }
 `;
-
 const DetailName = styled.span`
-font-weight: 500;
-font-size: 16px;
-line-height: 24px;
-color: #777E91;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: ${(props) => props.theme.detailName};
 `;
-
 const DetailContent = styled.span`
-font-weight: 500;
-font-size: 16px;
-line-height: 24px;
-color: #353945;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: ${(props) => props.theme.detailContent};
 `;
-
 
 // ************************************************************
 const Congratulations = () => {
+
+  const {id} = useParams();
+  const {t} = useTranslation();
+
+  const [hotelDetail, getHotelDetail] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState();
+
+  useEffect(() => {
+
+    const getHotelDetails = async () => {
+        try {
+            const data = await apiCalls.getHotelDetails(id);
+            setTimeout(() => {
+              setIsLoading(false)
+            },2000);
+            getHotelDetail(data);
+        } catch (error) {
+            setError(error.message);
+            setIsLoading(false);
+        }
+    }
+    getHotelDetails();
+  },[id]
+ ); 
+
+
   return (
+    
     <>
       <SuccessSection>
         <ListBreadcrumb>
@@ -246,11 +269,11 @@ const Congratulations = () => {
                 Hotel List <IoIosArrowForward />
               </Breadcrumb.Item>
 
-              <Breadcrumb.Item href="/details">
+              <Breadcrumb.Item href={`/details/${hotelDetail.id}`}>
                 Hotel details <IoIosArrowForward />
               </Breadcrumb.Item>
 
-              <Breadcrumb.Item href="/payment">
+              <Breadcrumb.Item href={`/payment/${hotelDetail.id}`}>
                 Confirm and pay
                 <IoIosArrowForward />
               </Breadcrumb.Item>
@@ -260,69 +283,75 @@ const Congratulations = () => {
           </BreadcrumpTheme>
         </ListBreadcrumb>
 
-        <CongratText>Congratulations!</CongratText>
-        <SectionTitle>Your trip has been booked!</SectionTitle>
+        <CongratText>{t('congratulate')}</CongratText>
+        <SectionTitle>{t('congrastitle')}</SectionTitle>
         <Divider />
-        <Text>Switzerland Hotels and Places to Stay </Text>
 
+             { error ?  <p className="error-message">{error}</p> :''}
+            {isLoading ? <Loader/> :''}
+            {!isLoading && !error ? 
+        <Text>{hotelDetail.name}</Text>
+              :" "}
         <AccomodationInfo>
           <StarWrapper>
             <IconWrapper>
-              <AiFillStar style={{ color: "#FFC542", fontSize: "16px" }} />
+              <AiFillStar
+                className="star"
+                style={{ color: "#FFC542", fontSize: "16px" }}
+              />
             </IconWrapper>
             <span>
-              4.8 <small>(122 reviews)</small>{" "}
+            {hotelDetail.rating} <small>({hotelDetail.reviews}reviews)</small>
             </span>
           </StarWrapper>
 
-          <Accomodation>1 bedroom + 1 private room</Accomodation>
+          <Accomodation> {t('bed')}</Accomodation>
         </AccomodationInfo>
 
         <FinalInfo>
           <ReserveInfo>
-            <hr />
+            <ShortDivider />
             <TravelDateInfo>
               <TourDate>
-                <label htmlFor="date">Date</label>
+                <label htmlFor="date">{t('date')}</label>
                 <input type="text" id="date" placeholder="June 27 - 30, 2020" />
               </TourDate>
               <Traveller>
-                <label htmlFor="date">Traveller</label>
+                <label htmlFor="date">{t('traveller')}</label>
                 <input type="text" id="date" placeholder="1 Passenger" />
               </Traveller>
             </TravelDateInfo>
 
             <ReserveDetails>
-              <ReserveDetailsTitle>Reserve details</ReserveDetailsTitle>
+              <ReserveDetailsTitle>{t('reserv')}</ReserveDetailsTitle>
               <div>
                 <ReserveTypeWrapper>
-                  {/* TODO:icon add!! */}
-                  <DetailName>Booking code</DetailName>
+                  <DetailName>{t('code')}</DetailName>
                   <DetailContent>FD_158456</DetailContent>
                 </ReserveTypeWrapper>
                 <ReserveTypeWrapper>
-                  <DetailName>Date</DetailName>
+                  <DetailName>{t('date')}</DetailName>
                   <DetailContent>30 Apr, 2021</DetailContent>
                 </ReserveTypeWrapper>
                 <ReserveTypeWrapper>
-                  <DetailName>Total</DetailName>
+                  <DetailName>{t('totals')}</DetailName>
                   <DetailContent>$833</DetailContent>
                 </ReserveTypeWrapper>
                 <ReserveTypeWrapper>
-                  <DetailName>Payment method</DetailName>
-                  <DetailContent>Creadit card</DetailContent>
+                  <DetailName>{t('mathod')}</DetailName>
+                  <DetailContent>{t('creditcard')}</DetailContent>
                 </ReserveTypeWrapper>
               </div>
             </ReserveDetails>
           </ReserveInfo>
 
           <CityImage>
-            <img src="../../assets/img/swizerland.jpg" alt="city image" />
+            <img src={`/assets/img/${hotelDetail.photo}`} alt={hotelDetail.name} />
           </CityImage>
         </FinalInfo>
 
         <GoToYourHome>
-          <Link to="/">Go To Your Home</Link>
+          <Link to="/">{t('home')}</Link>
         </GoToYourHome>
       </SuccessSection>
       <CTA />

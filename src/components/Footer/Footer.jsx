@@ -5,7 +5,7 @@ import styled from "styled-components";
 import "./footer.css";
 import { BsFillSunFill } from "react-icons/bs";
 import { FiMoon } from "react-icons/fi";
-// import { FooterCard } from "../../styled";
+import { useTranslation } from 'react-i18next';
 
 // ***************************************************************
 const FooterSection = styled.footer`
@@ -109,10 +109,10 @@ const FooterLink = styled.a`
 // *******************************************************************
 const Footer = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
+  const {t} = useTranslation();
 
   return (
     <>
-    {/* <FooterCard> */}
     <FooterSection>
         <div className="container">
           <FooterInnerWrapper className="footer-inner-wrapper">
@@ -125,8 +125,7 @@ const Footer = () => {
               </Logo>
 
               <LogoBoxText>
-                This is the team that specializes in making sure in the find it
-                a your interior looks cool
+                    {t('FooterText')}
               </LogoBoxText>
 
               <ModeSwitcher className="mode-switcher">
@@ -136,7 +135,7 @@ const Footer = () => {
                     toggleTheme(theme === "light" ? "light" : "light")
                   }
                 >
-                  <BsFillSunFill
+                  <BsFillSunFill className="sun"
                     style={{  fontSize: "20px", color: "#3B3E44"}}
                   />
                 </button>
@@ -153,93 +152,93 @@ const Footer = () => {
             </LogoBox>
 
             <ServicesBox>
-              <FooterTitle className="footer-title">Services</FooterTitle>
+              <FooterTitle className="footer-title"> {t('Services')}</FooterTitle>
               <FooterList className="footer-list">
                 <ListItem className="footer-item">
                   <FooterLink className="footer-link" href="#">
-                    Travel Booking
+                  {t('TravelBooking')}
                   </FooterLink>
                 </ListItem>
                 <ListItem className="footer-item">
                   <FooterLink className="footer-link" href="#">
-                    Flight Booking
+                    {t('FlightBooking')}
                   </FooterLink>
                 </ListItem>
                 <ListItem className="footer-item">
                   <FooterLink className="footer-link" href="#">
-                    Car Booking
+                   {t('CarBooking')}
                   </FooterLink>
                 </ListItem>
                 <ListItem className="footer-item">
                   <FooterLink className="footer-link" href="#">
-                    Fivestar Hotel
+                    {t('Fivestar')}
                   </FooterLink>
                 </ListItem>
                 <ListItem className="footer-item">
                   <FooterLink className="footer-link" href="#">
-                    Traveling
+                    {t('Traveling')}
                   </FooterLink>
                 </ListItem>
               </FooterList>
             </ServicesBox>
 
             <SupportBox>
-              <FooterTitle className="footer-title">Support</FooterTitle>
+              <FooterTitle className="footer-title">{t('Support')}</FooterTitle>
               <FooterList className="footer-list">
                 <ListItem className="footer-item">
                   <FooterLink className="footer-link" href="#">
-                    Account
+                    {t('Account')}
                   </FooterLink>
                 </ListItem>
                 <ListItem className="footer-item">
                   <FooterLink className="footer-link" href="#">
-                    Legal
+                    {t('Legal')}
                   </FooterLink>
                 </ListItem>
                 <ListItem className="footer-item">
                   <FooterLink className="footer-link" href="#">
-                    Contact
+                    {t('Contact')}
                   </FooterLink>
                 </ListItem>
                 <ListItem className="footer-item">
                   <FooterLink className="footer-link" href="#">
-                    Terms & Condition
+                   {t('Terms')}
                   </FooterLink>
                 </ListItem>
                 <ListItem className="footer-item">
                   <FooterLink className="footer-link" href="#">
-                    Privacy Policy
+                   {t('Privacy')}
                   </FooterLink>
                 </ListItem>
               </FooterList>
             </SupportBox>
 
             <div>
-              <FooterTitle className="footer-title">Business</FooterTitle>
+              <FooterTitle className="footer-title">  {t('Business')}</FooterTitle>
               <FooterList className="footer-list">
                 <ListItem className="footer-item">
                   <FooterLink className="footer-link" href="#">
-                    Success
+                    {t('Success')}
                   </FooterLink>
                 </ListItem>
                 <ListItem className="footer-item">
                   <FooterLink className="footer-link" href="#">
-                    About Locato
+                    {t('About')}
                   </FooterLink>
                 </ListItem>
                 <ListItem className="footer-item">
                   <FooterLink className="footer-link" href="#">
-                    Blog
+                    {t('Blog')}
                   </FooterLink>
                 </ListItem>
                 <ListItem className="footer-item">
                   <FooterLink className="footer-link" href="#">
-                    Information
+                    {t('Information')}
                   </FooterLink>
                 </ListItem>
                 <ListItem className="footer-item">
                   <FooterLink className="footer-link" href="#">
-                    Travel Guide
+                    {t('TravelGuide')}
                   </FooterLink>
                 </ListItem>
               </FooterList>
@@ -247,7 +246,6 @@ const Footer = () => {
           </FooterInnerWrapper>
         </div>
     </FooterSection>
-      {/* </FooterCard> */}
     </>
 
   );

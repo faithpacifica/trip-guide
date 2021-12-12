@@ -3,7 +3,13 @@ import "./explore.css";
 import styled from "styled-components";
 import ExploreCard from "../ExploreCard/ExploreCard";
 import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore , { Autoplay } from 'swiper';
+import SwiperCore , { Navigation} from 'swiper';
+import { useTranslation } from 'react-i18next';
+import { MdOutlineNavigateNext } from "react-icons/md";
+import { GrFormPrevious } from "react-icons/gr";
+import apiCalls from "../../config/api";
+import { useEffect, useState } from "react";
+import Loader from '../Loader';
 
 
 // ********************   STYLES  ************************
@@ -46,7 +52,36 @@ const SectionTop = styled.div`
 
 // *****************************************************
 const Explore = () => {
-SwiperCore.use([Autoplay]);
+
+SwiperCore.use([Navigation]);
+
+ const {t} = useTranslation();
+
+ 
+ const [explore,setExplore] = useState([]);
+ const [isLoading, setIsLoading] = useState(true);
+ const [error, setError] = useState();
+
+ useEffect(() => {
+
+
+  const getExplore = async () => {
+      try {
+          const data = await apiCalls.getExplore();
+          setTimeout(() => {
+            setIsLoading(false)
+          },2000);
+          setExplore(data);
+      } catch (error) {
+          setError(error.message);
+          setIsLoading(false);
+      }
+  }
+  getExplore();
+  
+},[] 
+
+);
 
 
   return (
@@ -55,34 +90,64 @@ SwiperCore.use([Autoplay]);
         <SectionTop className="section-top">
           <div>
             <ExploreWorldTitle className="explore-world__heading">
-              Explore The World
+             {t('ExploreTitle')}
             </ExploreWorldTitle>
             <ExploreWorldText className="explore-world__desc">
-              10,788 beautiful places to go
+              10,788  {t('ExploreText')}
             </ExploreWorldText>
           </div>
+
+          <div class = 'buttons'>
+            <button class='swiper-prev-button' type ='button'> 
+            <GrFormPrevious
+             style={{
+              color:'#84878B',
+              fontSize:'20px',
+              fontWeight:'bold'
+             }}/>
+              </button>
+            <button class ='swiper-next-button' type ='button'> 
+            <MdOutlineNavigateNext
+             style={{
+              fill:'black',
+              fontSize:'20px',
+              fontWeight:'bold'
+             }}/> 
+             </button>
+          </div>
         </SectionTop>
+          { error ?  <p className="error-message">{error}</p> :''}
+          {isLoading ? <Loader/> :''}
+          {!isLoading && !error ? 
+   
 
-    <Swiper
-      modules={[Autoplay]}
-      grabCursor={true}
-      spaceBetween={10}
-      slidesPerView={4}
-      loop autoplay={{ delay: 4000, disableOnInteraction: false }}
-      scrollbar={{ draggable: true }}
+        <Swiper
+          modules={[Navigation]}
+          navigation = {{
+            nextEl:'.swiper-next-button',
+            prevEl:'.swiper-prev-button',
+          }}
 
-    >
+          grabCursor={true}
+          spaceBetween={10}
+          slidesPerView={4}
+          loop autoplay={{ delay: 4000, disableOnInteraction: false }}
+          scrollbar={{ draggable: true }}
+        >
         <ExploreWorldWrapper className="explore-world__wrapper ">
-           <SwiperSlide> <ExploreCard /></SwiperSlide>
-            <SwiperSlide><ExploreCard /></SwiperSlide>
-            <SwiperSlide><ExploreCard  /></SwiperSlide>
-            <SwiperSlide><ExploreCard /></SwiperSlide>
-            <SwiperSlide><ExploreCard /></SwiperSlide>
-            <SwiperSlide><ExploreCard /></SwiperSlide>
-            <SwiperSlide><ExploreCard  /></SwiperSlide>
-            <SwiperSlide><ExploreCard /></SwiperSlide>
-        </ExploreWorldWrapper>
+
+        {
+           explore.map(el => 
+           (  <SwiperSlide key = {el.id}> 
+                 <ExploreCard exploreobj ={el}/>
+              </SwiperSlide>
+            )
+          )
+        }
+
+            </ExploreWorldWrapper>
         </Swiper>
+       : ''}
       </div>
     </ExploreWorld>
   );

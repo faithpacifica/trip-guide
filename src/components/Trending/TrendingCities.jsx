@@ -2,6 +2,10 @@ import React from 'react';
 import './trendingcities.css'
 import styled from "styled-components";
 import TrendingCityCard from '../TrendingCItyCard/TrendingCityCard';
+import { useTranslation } from 'react-i18next';
+import apiCalls from "../../config/api";
+import { useEffect, useState } from "react";
+import Loader from '../Loader';
 
 // *****************************************************************
 const  TrendingSection = styled.section`
@@ -26,7 +30,7 @@ font-family: Poppins,sans-serif;
 font-size: 24px;
 line-height: 24px;
 text-align: center;
-color:${(props) => props.theme. TrendingCardReview};
+color:${(props) => props.theme.TrendingCardReview};
 margin-bottom:50px;
 margin-left:auto;
 margin-right:auto;
@@ -43,24 +47,51 @@ const TrendingCitiesCardWrapper = styled.div`
 
 // ******************************************************************
 const TrendingCities = () => {
+
+  const {t} = useTranslation();
+  const [cities,setCities] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState();
+
+  useEffect(() => {
+
+    const getCities = async () => {
+      try {
+          const data = await apiCalls.getCities();
+          setTimeout(() => {
+            setIsLoading(false)
+          },2000);
+          setCities(data);
+      } catch (error) {
+          setError(error.message);
+          setIsLoading(false);
+      }
+  }
+  getCities();
+  },[]);
+
     return (
         <TrendingSection className="trending-section">
         <div className="container">
           <TrendingSectionTitle className="trending-section__heading">
-          Trending cites
+          {t('TrendingTitle')}
           </TrendingSectionTitle>
           <TrendingSectionText className="trending-section__desc">
-          The most searched for cities on TripGuide
+           {t('TrendingText')}
           </TrendingSectionText>
 
-          <TrendingCitiesCardWrapper className="trending-cities-card-wrapper">
-            <TrendingCityCard />
-            <TrendingCityCard />
-            <TrendingCityCard />
-            <TrendingCityCard />
-            <TrendingCityCard />
-            <TrendingCityCard />
-          </TrendingCitiesCardWrapper>
+
+          { error ?  <p className="error-message">{error}</p> :''}
+          {isLoading ? <Loader/> :''}
+          {!isLoading && !error ? 
+
+                <TrendingCitiesCardWrapper className="trending-cities-card-wrapper">
+                  {
+                    cities.map(el => 
+                      ( <TrendingCityCard key = {el.id}  citiesobj ={el}/> ) )
+                  }
+                </TrendingCitiesCardWrapper>
+           : ''}
         </div>
       </TrendingSection>
     );

@@ -1,7 +1,7 @@
 import React from 'react';
 import CTA from '../components/CTA/CTA';
 import styled from "styled-components";
-
+import { useTranslation } from 'react-i18next';
 // *************************************************************
 const CarSection = styled.div`
 padding-top:150px;
@@ -16,9 +16,11 @@ padding-top:150px;
 
 // **************************************************************
 const Car = () => {
+    const {t} = useTranslation();
     return (
         <CarSection>
-           This is Car reservation page
+            {t('carPage')}
+           
            <CTA/>
         </CarSection>
     );

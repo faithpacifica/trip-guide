@@ -1,6 +1,7 @@
 import React from 'react';
 import CTA from '../components/CTA/CTA';
 import styled from "styled-components";
+import { useTranslation } from 'react-i18next';
 
 // **********************************************
 const Profile = styled.div`
@@ -14,9 +15,11 @@ padding-top:150px;
 
 // **********************************************
 const MyProfile = () => {
+
+    const {t} = useTranslation();
     return (
         <Profile>
-            This is My Profile Page
+              {t('MyProfilePage')}
             <CTA/>
         </Profile>
     );

@@ -9,6 +9,11 @@ import { AiFillStar } from "react-icons/ai";
 import { FiFlag } from "react-icons/fi";
 import HotelInfoDetails from "../../components/HotelInfoDetails/HotelInfoDetails";
 import BookingDetails from "../../components/BookingDetails/BookingDetails";
+import { useParams } from "react-router-dom";
+import apiCalls from '../../config/api';
+import { useEffect, useState } from "react";
+import Loader from '../../components/Loader';
+import { useTranslation } from 'react-i18next';
 
 // *****************************************************
 const DetailsSection = styled.div`
@@ -16,8 +21,8 @@ const DetailsSection = styled.div`
   padding-top: 40px;
   padding-left: 50px;
   padding-right: 50px;
-  padding-bottom: 200px;
-  margin-bottom: -250px;
+  padding-bottom: 300px;
+  margin-bottom: -360px;
 `;
 
 const ListBreadcrumb = styled.div`
@@ -73,20 +78,49 @@ const IconWrapper = styled.div`
 `;
 
 const ImagesGrid = styled.div`
-  height:632px;
-  width:1150px;
-//   TODO:1240 edi
+  height:500px !important;
+  width:1240px;
   border-radius:20px;
   margin:0 auto;
+  margin-bottom:40px;
     img{
         width:100%;
+        height:500px;
         object-fit:cover;
         display:block;
         border-radius:20px;
     }
 `;
 // ******************************************************
+
 const HotelDetails = () => {
+
+  const {id} = useParams();
+  const {t} = useTranslation();
+
+  const [hotelDetail, getHotelDetail] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState();
+
+  useEffect(() => {
+
+    const getHotelDetails = async () => {
+        try {
+            const data = await apiCalls.getHotelDetails(id);
+            setTimeout(() => {
+              setIsLoading(false)
+            },2000);
+            getHotelDetail(data);
+        } catch (error) {
+            setError(error.message);
+            setIsLoading(false);
+        }
+    }
+    getHotelDetails();
+  },[id]
+ ); 
+
+ 
   return (
     <>
       <DetailsSection>
@@ -105,26 +139,34 @@ const HotelDetails = () => {
           </BreadcrumpTheme>
         </ListBreadcrumb>
 
-        <DetailsTitle>Switzerland Hotels and Places to Stay</DetailsTitle>
+          { error ?  <p className="error-message">{error}</p> :''}
+         {isLoading ? <Loader/> :''}
+         {!isLoading && !error ? 
+              <div>
+                    <DetailsTitle>{hotelDetail.name}</DetailsTitle>
 
-        <Rating>
-          <StarWrapper>
-            <IconWrapper><AiFillStar style={{ color: "#FFC542", fontSize: "16px" }} /></IconWrapper>
-            <span> 4.8 <small>(122 reviews)</small></span>
-          </StarWrapper>
-          <IconWrapper>
-            <FiFlag style={{ color: "#84878B", fontSize: "16px", marginRight: "8px", marginTop: "3px" }}/>
-            <span>Zuich town, Switzerland</span>
-          </IconWrapper>
-        </Rating>
+                    <Rating>
+                      <StarWrapper>
+                        <IconWrapper><AiFillStar className='star' style={{ color: "#FFC542 !important", fontSize: "16px" }} /></IconWrapper>
+                        <span> {hotelDetail.rating} <small>({hotelDetail.reviews} {t('reviews')})</small></span>
+                      </StarWrapper>
+                      <IconWrapper>
+                        <FiFlag style={{ color: "#84878B", fontSize: "16px", marginRight: "8px", marginTop: "3px" }}/>
+                        <span>{hotelDetail.name}</span>
+                      </IconWrapper>
+                    </Rating>
 
-        <ImagesGrid><img src='../../assets/img/details-grid-1.jpg' width='' height='632' alt='hotel image'></img>
-        </ImagesGrid>
+                    <ImagesGrid><img src={`/assets/img/${hotelDetail.photo}`} width='' height='632' alt={hotelDetail.name} />
+                    </ImagesGrid>
+                
 
-        <DetailsContent>
-            <HotelInfoDetails />
-            <BookingDetails />
-        </DetailsContent>
+                      <DetailsContent>
+                          <HotelInfoDetails prop = {hotelDetail} />
+                          <BookingDetails  prop = {hotelDetail} />
+                      </DetailsContent>
+              </div>
+              : ''}
+
       </DetailsSection>
       <CTA />
     </>

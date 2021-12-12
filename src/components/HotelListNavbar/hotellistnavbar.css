@@ -6,10 +6,9 @@
   border-radius: 16px;
   width: 354px;
   position: absolute;
-  bottom: 500px;
- left: 390px;
+  bottom: 360px;
+ left: 300px;
   display: none;
-  z-index: 1000;
 }
 
 .passenger {
@@ -21,8 +20,7 @@
   background-color: transparent;
 }
 
-
-.passenger.modalAppear2+.passenger-modal2 {
+.passenger.modalAppear2 + .passenger-modal2 {
   display: block;
 }
 

@@ -7,15 +7,20 @@ import { IoIosArrowForward } from "react-icons/io";
 import { BreadcrumpTheme } from "../../styled";
 import CreditCards from '../../components/CreditCards/CreditCards';
 import FareSummary from '../../components/FareSummary/FareSummary';
-
+import { BsPencil } from "react-icons/bs";
+import { useParams } from "react-router-dom";
+import apiCalls from '../../config/api';
+import { useEffect, useState } from "react";
+import { useTranslation } from 'react-i18next';
+import Loader from '../../components/Loader';
 // ****************************************************
 const PaymentSection = styled.div`
   background-color: ${(props) => props.theme.DetailsBg};
   padding-top: 40px;
   padding-left: 75px;
   padding-right: 75px;
-  padding-bottom: 200px;
-  margin-bottom: -250px;
+  padding-bottom: 300px;
+  margin-bottom: -355px;
 `;
 
 const ListBreadcrumb = styled.div`
@@ -61,8 +66,8 @@ const PaymentSubTitle = styled.h4`
 
 const TourDate = styled.div`
     width:470px;
-    padding:7.7px 20px;
-    background-color: #F4F4F6;
+    padding:1px 20px;
+    background-color: ${(props) => props.theme.tourDateTraveller};
     border-radius: 15px;
     margin-bottom:20px;
     display:flex;
@@ -71,7 +76,7 @@ const TourDate = styled.div`
             font-weight: 500;
             font-size: 16px;
             line-height: 24px;
-            color: #141416;
+            color: ${(props) => props.theme.tourDateLabel};
             display:block;
         }
         input{
@@ -83,15 +88,15 @@ const TourDate = styled.div`
                 font-weight: 500;
                 font-size: 16px;
                 line-height: 24px;
-                color: #84878B;
+                color:; ${(props) => props.theme.tourDateInput};
             }
         }
 `;
 
 const Traveller = styled.div`
-  width:470px;
-    padding:7.7px 20px;
-    background-color: #F4F4F6;
+     width:470px;
+    padding:1px 20px;
+    background-color: ${(props) => props.theme.tourDateTraveller};
     border-radius: 15px;
     margin-bottom:40px;
     display:flex;
@@ -100,7 +105,7 @@ const Traveller = styled.div`
             font-weight: 500;
             font-size: 16px;
             line-height: 24px;
-            color: #141416;
+            color:  ${(props) => props.theme.tourDateLabel};
             display:block;
         }
         input{
@@ -112,12 +117,38 @@ const Traveller = styled.div`
                 font-weight: 500;
                 font-size: 16px;
                 line-height: 24px;
-                color: #84878B;
+                color:${(props) => props.theme.tourDateInput};
             }
         }
 `;
 // *******************************************************
 const HotelPayment = () => {
+
+  const {id} = useParams();
+  const {t} = useTranslation();
+
+  const [hotelDetail, getHotelDetail] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState();
+
+  useEffect(() => {
+
+    const getHotelDetails = async () => {
+        try {
+            const data = await apiCalls.getHotelDetails(id);
+            setTimeout(() => {
+              setIsLoading(false);
+            },2000);
+            getHotelDetail(data);
+        } catch (error) {
+            setError(error.message);
+            setIsLoading(false);
+        }
+    }
+    getHotelDetails();
+  },[id]
+ );
+
     return (
         <>
         <PaymentSection>
@@ -128,11 +159,11 @@ const HotelPayment = () => {
                   Home <IoIosArrowForward />
                 </Breadcrumb.Item>
 
-                <Breadcrumb.Item href="/hotellist">
+                <Breadcrumb.Item href="/hotellist/">
                   Hotel List <IoIosArrowForward />
                 </Breadcrumb.Item>
 
-                <Breadcrumb.Item href="/details">
+                <Breadcrumb.Item href={`/details/${hotelDetail.id}`}>
                   Hotel details <IoIosArrowForward />
                 </Breadcrumb.Item>
 
@@ -144,22 +175,31 @@ const HotelPayment = () => {
           <DetailsContent>
               <ConfirmationDetails>
                   <ConfirmBook>
-                  <PaymentTitle>Confirm your Book</PaymentTitle>
+                  <PaymentTitle>{t('confirm')}</PaymentTitle>
                   <Hr/>
-                  <PaymentSubTitle>Your tour</PaymentSubTitle>
+
+                  <PaymentSubTitle>{t('yourtour')}</PaymentSubTitle>
                  <TourDate>
-                     <label htmlFor="date">Date</label>
+                     <label htmlFor="date">{t('date')}</label>
                      <input type="text" id = 'date' placeholder= 'June 27 - 30, 2020'/>
+                     <BsPencil style={{position:'relative', fontSize:'20px', top:'-30', left:'400px'}}/>
                  </TourDate>
                  <Traveller>
-                     <label htmlFor="date">Traveller</label>
+                     <label htmlFor="date">{t('traveller')}</label>
                      <input type="text" id = 'date' placeholder= '1 Passenger'/>
+                     <BsPencil style={{position:'relative', fontSize:'20px',  top:'-30', left:'400px'}}/>
                  </Traveller>
                   </ConfirmBook>
 
-                  <CreditCards />
-              </ConfirmationDetails>
-              <FareSummary />
+                  <CreditCards prop ={hotelDetail} />
+
+              </ConfirmationDetails >
+
+            { error ?  <p className="error-message">{error}</p> :''}
+            {isLoading ? <Loader/> :''}
+            {!isLoading && !error ? 
+                <FareSummary prop ={hotelDetail}/>
+            :""}
           </DetailsContent>
         </PaymentSection>
         <CTA />

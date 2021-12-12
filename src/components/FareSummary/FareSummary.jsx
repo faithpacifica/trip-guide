@@ -1,20 +1,19 @@
 import React from "react";
 import styled from "styled-components";
 import { AiFillStar } from "react-icons/ai";
-
+import { useTranslation } from 'react-i18next';
 
 // *********************************************
 
 const FareSummarySection = styled.section`
   max-width: 445px;
   width: 100%;
-  background-color: white;
+  background-color: ${(props) => props.theme.ExploreWorldCard};
   padding: 40px 35px 36px;
   color: #353945;
-  border: 1px solid #e7ecf3;
+  border: 1px solid #d8d9da;
   border-radius: 20px;
 `;
-
 const SectionTitle = styled.h4`
   margin: 0;
   margin-bottom: 14px;
@@ -24,7 +23,6 @@ const SectionTitle = styled.h4`
   letter-spacing: -0.005em;
   color: ${(props) => props.theme.DetailsTitle};
 `;
-
 const IconWrapper = styled.div`
   display: flex;
   justify-content: start;
@@ -35,7 +33,6 @@ const IconWrapper = styled.div`
     color: #84878b;
   }
 `;
-
 const StarWrapper = styled.div`
   display: flex;
   text-align: center;
@@ -52,12 +49,12 @@ const StarWrapper = styled.div`
     font-weight: normal;
   }
 `;
-
 const Image = styled.img`
   width: 326px;
   height: 177px;
   object-fit: cover;
   margin-bottom: 24px;
+  border-radius:10px;
 `;
 const Accomodation = styled.p`
   margin: 0;
@@ -67,13 +64,11 @@ const Accomodation = styled.p`
   line-height: 24px;
   color: #84878b;
 `;
-
 const Hr = styled.hr`
   width: 185px;
   border: 1px solid #eeeeee;
   margin-bottom: 21px;
 `;
-
 const FinalConfirmation = styled.div`
   margin-bottom:40px;
 `;
@@ -83,7 +78,6 @@ const FinalCheckInOut = styled.div`
   margin-bottom:21px;
     div:nth-child(1){
       margin-right:86px;
-      border-left:2px solid #F4F5F6;
     }
 `;
 const P = styled.p`
@@ -100,7 +94,6 @@ font-size: 16px;
 line-height: 24px;
 color: #84878B;
 `;
-
 const BookedDetailsTitle = styled.h3`
 margin:0;
 margin-bottom:40px;
@@ -108,7 +101,7 @@ font-family: Roboto,sans-serif;
 font-weight: 500;
 font-size: 26px;
 line-height: 27px;
-color: #333333;
+color:${(props) => props.theme.fareSummaryTitle};
 `;
 const BookedDetailsField = styled.div`
     margin-bottom:30px;
@@ -123,12 +116,23 @@ font-weight: 500;
 font-size: 16px;
 line-height: 24px;
 color: #84878B;
+span{
+  font-weight: 500;
+  font-size: 20px;
+  color:${(props) => props.theme.checkinOutDateColor};
+}
 `;
 const DetailsFieldsAmount = styled.div`
 font-weight: 500;
+font-size: 20px;
+line-height: 24px;
+color: ${(props) => props.theme.checkinOutDateColor};
+`;
+const DetailsFieldsAmountService = styled.div`
+font-weight: 400;
 font-size: 16px;
 line-height: 24px;
-color: #353945;
+color: ${(props) => props.theme.checkinOutDateColor};
 `;
 const Guests = styled.div``;
 const FinalTotalAmount = styled.div`
@@ -136,17 +140,15 @@ const FinalTotalAmount = styled.div`
   justify-content:space-between;
   margin-bottom:30px;
   padding:7.5px 12px;
-  background-color: #F4F5F6;
+  background-color:${(props) => props.theme.finalTotalAmount} ;
   border-radius: 6px;
 `;
-
 const Total = styled.div`
 font-weight: 500;
 font-size: 16px;
 line-height: 24px;
-color: #23262F;
+color:${(props) => props.theme.FeatureDetailsTitle};
 `;
-
 const Report = styled.div`
 font-weight: 500;
 font-size: 14px;
@@ -156,23 +158,26 @@ text-align:center;
 
 `;
 // *****************************************
-const FareSummary = () => {
+const FareSummary = ({prop}) => {
+
+  const {t} = useTranslation();
+
   return (
     <FareSummarySection>
-      <h6>Switzerland Hotels and Places to Stay </h6>
+      <SectionTitle>{prop.name} </SectionTitle>
 
       <StarWrapper>
         <IconWrapper>
-          <AiFillStar style={{ color: "#FFC542", fontSize: "16px" }} />
+          <AiFillStar  className='star' style={{ color: "#FFC542", fontSize: "16px" }} />
         </IconWrapper>
         <span>
-          4.8 <small>(122 reviews)</small>{" "}
+        {prop.rating}<small>({prop.reviews} {t('reviews')})</small>{" "}
         </span>
       </StarWrapper>
 
-      <Image src="../../assets/img/swizerland.jpg" alt="city image" />
-
-      <Accomodation>1 bedroom + 1 private room</Accomodation>
+      <Image src= {`/assets/img/${prop.photo}`} alt={prop.name} />
+     
+      <Accomodation>{t('privateroom')}</Accomodation>
 
       <Hr />
 
@@ -189,37 +194,37 @@ const FareSummary = () => {
         </FinalCheckInOut>
 
         <Guests>
-          <P>Guests</P>
-          <Div>2 guests </Div>
+          <P>{t('guest')}</P>
+          <Div>2  {t('guest')}</Div>
         </Guests>
       </FinalConfirmation>
 
-      <BookedDetailsTitle>Booked details</BookedDetailsTitle>
+      <BookedDetailsTitle>{t('FareSummary')}</BookedDetailsTitle>
 
       <BookedDetailsField>
 
         <DetailsFields>
-          <BookedService>$119  +  5nights</BookedService>
-          <DetailsFieldsAmount>$833</DetailsFieldsAmount>
+          <BookedService><span>${prop.price } </span>  +  5 {t('tun')}</BookedService>
+          <DetailsFieldsAmount>{ `$${prop.price * 5} `} </DetailsFieldsAmount>
         </DetailsFields>
 
         <DetailsFields>
-          <BookedService>Occupancy text and fee</BookedService>
-          <DetailsFieldsAmount>-$125</DetailsFieldsAmount>
+          <BookedService>{t('occupancy')}</BookedService>
+          <DetailsFieldsAmountService>-$125</DetailsFieldsAmountService>
         </DetailsFields>
 
         <DetailsFields>
-          <BookedService>Service free</BookedService>
-          <DetailsFieldsAmount>$103</DetailsFieldsAmount>
+          <BookedService>{t('servicefree')}</BookedService>
+          <DetailsFieldsAmountService>$103</DetailsFieldsAmountService>
         </DetailsFields>
 
         <FinalTotalAmount>
-          <Total>Total</Total>
-          <DetailsFieldsAmount>$833</DetailsFieldsAmount>
+          <Total>{t('totals')}</Total>
+          <DetailsFieldsAmount>{ `$${prop.price * 5}`}</DetailsFieldsAmount>
         </FinalTotalAmount>
       </BookedDetailsField>
 
-      <Report>Report this property</Report>
+      <Report>{t('report')}</Report>
     </FareSummarySection>
   );
 };

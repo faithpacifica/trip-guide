@@ -1,8 +1,7 @@
 import React from "react";
 import "./bestplaces.css";
 import styled from "styled-components";
-import BestPlacesCard from "../BestPlacesCard/BestPlacesCard";
-
+import { useTranslation } from 'react-i18next';
 
 // ********************************************************
 const PlacesBest = styled.section`
@@ -43,30 +42,116 @@ const PlacesCardWrapper = styled.div`
   margin-right: -15px;
 `;
 
+const PlacesCard = styled.div`
+border: 1px solid #E7ECF3;
+border-radius: 10px;
+width:270px;
+height:202px;
+padding:30px  30px 25px;
+margin-bottom:30px;
+// margin-left:15px;
+margin-right:15px;
+&:hover{
+    pointer:cursor;
+    background-color: ${(props) => props.theme.BestCardHoverBg};
+    box-shadow: 0px 20px 51px rgba(96, 96, 96, 0.1);
+}
+&:active{
+    background-color: lightgrey;
+}
+`;
+
+const PlacesCardImg = styled.img`
+    width:70px;
+    height:70px;
+    object-fit:contain;
+    display:block;
+    margin-bottom:18px;
+`;
+
+const PlacesCardTitle = styled.h6`
+font-family: DM Sans, sans-serif;
+font-weight: bold;
+font-size: 20px;
+line-height: 26px;
+color:${(props) => props.theme.PlacesCardTitle} ;
+margin:0;
+margin-bottom:12px;
+`;
+
+const PlacesCardText = styled.span`
+font-family: DM Sans,sans-serif;
+font-weight: 500;
+font-size: 14px;
+line-height: 21px;
+color: ${(props) => props.theme.PlacesCardText};
+margin:0;
+`;
 
 // *************************************************************
 const BestPlaces = () => {
+
+  const {t} = useTranslation();
+
   return (
     <PlacesBest className="places-best">
       <div className="container">
         <PlacesBestTitle className="places-best__heading">
-          Search a best place in the world
+        {t('BestTitle')}
         </PlacesBestTitle>
         <PlacesBestText className="places-best__desc">
-          Whether you’re looking for places for a vacation. We are here to Guide
-          you about the details you need to check in and ease your trips in
-          advance
+        {t('BestText')}
         </PlacesBestText>
 
         <PlacesCardWrapper className="PlacesCard-wrapper">
-          <BestPlacesCard />
-          <BestPlacesCard />
-          <BestPlacesCard />
-          <BestPlacesCard />
-          <BestPlacesCard />
-          <BestPlacesCard />
-          <BestPlacesCard />
-          <BestPlacesCard />
+        <PlacesCard className= 'places-card'>
+           <PlacesCardImg src="../../../assets/img/best-1.jpg" alt="city" width= '70' height = '70' />
+           <PlacesCardTitle>Batu, East Java</PlacesCardTitle>
+           <PlacesCardText><span>86 </span>  {t('destinations')}</PlacesCardText>
+        </PlacesCard>
+
+        <PlacesCard className= 'places-card'>
+           <PlacesCardImg src="../../../assets/img/best-2.png" alt="city" width= '70' height = '70' />
+           <PlacesCardTitle>Kuta</PlacesCardTitle>
+           <PlacesCardText><span>86 </span>  {t('destinations')}</PlacesCardText>
+        </PlacesCard>
+
+        <PlacesCard className= 'places-card'>
+           <PlacesCardImg src="../../../assets/img/best-3.jpg" alt="city" width= '70' height = '70' />
+           <PlacesCardTitle>Surabaya, East Java</PlacesCardTitle>
+           <PlacesCardText><span>86 </span> {t('destinations')}</PlacesCardText>
+        </PlacesCard>
+
+        <PlacesCard className= 'places-card'>
+           <PlacesCardImg src="../../../assets/img/best-4.jpg" alt="city" width= '70' height = '70' />
+           <PlacesCardTitle>Malang, East Java</PlacesCardTitle>
+           <PlacesCardText><span>86 </span> {t('destinations')}</PlacesCardText>
+        </PlacesCard>
+
+        <PlacesCard className= 'places-card'>
+           <PlacesCardImg src="../../../assets/img/best-5.jpg" alt="city" width= '70' height = '70' />
+           <PlacesCardTitle>Dieng, Central Java</PlacesCardTitle>
+           <PlacesCardText><span>86 </span>  {t('destinations')}</PlacesCardText>
+        </PlacesCard>
+
+        <PlacesCard className= 'places-card'>
+           <PlacesCardImg src="../../../assets/img/best-6.jpg" alt="city" width= '70' height = '70' />
+           <PlacesCardTitle>Nusa Dua, Lombok</PlacesCardTitle>
+           <PlacesCardText><span>86 </span>  {t('destinations')}</PlacesCardText>
+        </PlacesCard>
+
+        <PlacesCard className= 'places-card'>
+           <PlacesCardImg src="../../../assets/img/best-7.jpg" alt="city" width= '70' height = '70' />
+           <PlacesCardTitle>Bandung, West Java</PlacesCardTitle>
+           <PlacesCardText><span>86 </span> {t('destinations')}</PlacesCardText>
+        </PlacesCard>
+
+        <PlacesCard className= 'places-card'>
+           <PlacesCardImg src="../../../assets/img/best-8.jpg" alt="city" width= '70' height = '70' />
+           <PlacesCardTitle>Wakatobi, Sumatera</PlacesCardTitle>
+           <PlacesCardText><span>86 </span>  {t('destinations')}</PlacesCardText>
+        </PlacesCard>
+
         </PlacesCardWrapper>
       </div>
     </PlacesBest>

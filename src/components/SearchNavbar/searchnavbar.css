@@ -72,6 +72,9 @@
 .DayPickerInput input {
     border: none;
     background-color: transparent;
+    color:#777E91;
+    border:none;
+    outline:none;
 }
 
 .passenger {
@@ -94,7 +97,7 @@
     border-radius: 16px;
     width: 354px;
     position: absolute;
-    bottom: 235px;
+    bottom: 210px;
     right: 0px;
     display: none;
 }
@@ -120,4 +123,19 @@
 .option-box option{
     background-color: rosybrown;
     padding: 3px;
+}
+
+/* SELECT */
+
+.css-1s2u09g-control{
+    background-color:transparent!important;
+    border:none !important;
+}
+
+.css-qc6sy-singleValue {
+    color:#777E91 !important;
+}
+
+.location {
+    fill: #9298a7 !important;
 }

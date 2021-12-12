@@ -9,6 +9,10 @@ import HotelListFilter from '../../components/HotelListFilter/HotelListFilter';
 import HotelListCard from '../../components/HotelListCard/HotelListCard';
 import { BiLoaderCircle } from "react-icons/bi";
 import { BreadcrumpTheme } from '../../styled';
+import apiCalls from '../../config/api';
+import { useEffect, useState } from "react";
+import Loader from '../../components/Loader';
+import { useTranslation } from 'react-i18next';
 
 // *********************************************************
 const HotelListPage =  styled.div`
@@ -41,10 +45,51 @@ const ViewAll = styled.button`
     padding:10px 42px 12px 50px;
     background-color:transparent;
     margin-left:420px;
+    &:hover{
+        cursor:pointer;
+        color:white;
+        background-color:#3B71FE;
+    }
+
+    &:active{
+        color:white;
+        background-color:light-blue;
+    }
 `;
 
 // ********************************************************
 const HotelList = () => {
+
+    const {t} = useTranslation();
+
+    const [hotels,setHotels] = useState([]);
+    const [extraHotels, setExtraHotels] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState();
+ 
+    useEffect(() => {
+
+        const getHotels = async () => {
+            try {
+                const data = await apiCalls.getHotels();
+                setTimeout(() => {
+                    setIsLoading(false)
+                  },2000);
+                setHotels(data);
+                setExtraHotels(data.slice(0,3));
+            } catch (error) {
+                setError(error.message);
+                setIsLoading(false);
+            }
+        }
+        getHotels();
+     },[]);
+
+      const LoadMore =( element) =>{
+        setExtraHotels(hotels);
+        element.target.style.display = 'none';
+      }
+
     return (
         <>
         <HotelListPage>
@@ -60,15 +105,24 @@ const HotelList = () => {
 
             <HotelListContent>
                 <HotelListFilter />
+
                 <div>
-                    <div>
-                        <HotelListCard />
-                        <HotelListCard />
-                        <HotelListCard />
-                    </div>
-                        <ViewAll type='button'>
-                        <BiLoaderCircle style = {{marginRight:'18px'}}/>
-                        View All</ViewAll>
+                    { error ?  <p className="error-message">{error}</p> :''}
+                    {isLoading ? <Loader/> :''}
+                    {!isLoading && !error ? 
+
+                            <div>
+                            {
+                                extraHotels.map(el => 
+                                ( <HotelListCard key = {el.id}  hotelsobj ={el}/>) )
+                            }
+                            </div>
+                     : ''}
+
+                        <ViewAll onClick ={LoadMore}>
+                            <BiLoaderCircle  style = {{marginRight:'18px'}}/>
+                            {t('viewAll')}
+                        </ViewAll>
                  </div>
             </HotelListContent>
 

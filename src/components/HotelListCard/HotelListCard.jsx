@@ -12,6 +12,8 @@ import { RiBookmark3Line } from "react-icons/ri";
 import { AiOutlineDribbble } from "react-icons/ai";
 import { BsGrid } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
+
 
 // ********************************************************
 const ListCard = styled.div`
@@ -25,6 +27,7 @@ const ListCard = styled.div`
 
 const Img = styled.img`
   width: 420px;
+  height:465px;
   border-radius: 20px 0 0 20px;
 `;
 
@@ -35,7 +38,7 @@ const HotelInfo = styled.div`
 
 const CardTitle = styled.h3`
   font-weight: bold;
-  font-size: 40px;
+  font-size: 30px;
   line-height: 60px;
   margin-bottom: 22px;
   letter-spacing: -0.005em;
@@ -165,26 +168,29 @@ const BookNow = styled.div`
 `;
 
 // ********************************************************
-const HotelListCard = () => {
+const HotelListCard = ({hotelsobj}) => {
+
+  const {t} = useTranslation();
+
   return (
-    <ListCard>
-      <Img src="../../assets/img/hl-card-1.jpg" width="500" height="465" />
+    <ListCard >
+      <Img src={`/assets/img/${hotelsobj.photo}`} width="500" height="465" alt={hotelsobj.name} />
       <HotelInfo>
-        <CardTitle>Zurich, Switzerland</CardTitle>
+        <CardTitle>{hotelsobj.name}</CardTitle>
         <Rating>
           <StarWrapper>
             <IconWrapper>
-              <AiFillStar style={{ color: "#FFC542", fontSize: "16px" }} />
+              <AiFillStar className='star' style={{ color: "#FFC542", fontSize: "16px" }} />
             </IconWrapper>
             <span>
-              4.8 <small>(122 reviews)</small>{" "}
+            {hotelsobj.rating}<small>({hotelsobj.reviews} {t('reviews')} )</small>
             </span>
           </StarWrapper>
           <IconWrapper>
             <FiFlag
               style={{ color: "#84878B", fontSize: "16px", marginRight: "8px", marginTop: "3px" }}
             />
-            <span>Zurich town, Switzerland</span>
+            <span>{hotelsobj.name}</span>
           </IconWrapper>
         </Rating>
 
@@ -199,7 +205,7 @@ const HotelListCard = () => {
                 }}
               />
             </IconWrapper>
-            <span>Zurich Hotel, Switzerland</span>
+            <span>{hotelsobj.location}</span>
           </ExploreLocation>
           <Calendar>
             <IconWrapper>
@@ -221,7 +227,7 @@ const HotelListCard = () => {
               style={{ color: "#84878B", fontSize: "20px", marginRight: "6px" }}
             />
           </IconWrapper>
-          <span>Departure from zurich</span>
+          <span>{t('depture')}   {(hotelsobj.location).substr(0, (hotelsobj.location).indexOf(' '))}</span>
         </Departure>
 
         <Services>
@@ -236,7 +242,7 @@ const HotelListCard = () => {
                   }}
                 />
               </IconWrapper>
-              <span>Free Wifi</span>
+              <span>{t('freewifi')} </span>
             </Type>
             <Type>
               <IconWrapper>
@@ -248,7 +254,7 @@ const HotelListCard = () => {
                   }}
                 />
               </IconWrapper>
-              <span>Free parking</span>
+              <span>{t('parking')}</span>
             </Type>
             <Type>
               <IconWrapper>
@@ -260,7 +266,7 @@ const HotelListCard = () => {
                   }}
                 />
               </IconWrapper>
-              <span>Special offer</span>
+              <span>{t('offer')}</span>
             </Type>
             <Type>
               <IconWrapper>
@@ -272,7 +278,7 @@ const HotelListCard = () => {
                   }}
                 />
               </IconWrapper>
-              <span>Visit hotel website </span>
+              <span>{t('visit')} </span>
             </Type>
             <Type>
               <IconWrapper>
@@ -284,16 +290,16 @@ const HotelListCard = () => {
                   }}
                 />
               </IconWrapper>
-              <span>Taking safety measures</span>
+              <span>{t('saferty')}</span>
             </Type>
           </ServiceType>
 
           <PriceAndBooking>
             <Price>
-              $320 <small>For Two</small>
+              ${hotelsobj.price} <small>{t('fortwo')}</small>
             </Price>
             <BookNow>
-              <Link to="/details">Book Now</Link>
+              <Link to={`/details/${hotelsobj.id}`}>{t('booknow')}</Link>
             </BookNow>
           </PriceAndBooking>
         </Services>

@@ -1,7 +1,7 @@
 import React from "react";
 import "./featured.css";
 import styled from "styled-components";
-
+import { useTranslation } from 'react-i18next';
 
 // ************************************************************
 const FeaturedSection = styled.section`
@@ -46,7 +46,6 @@ const GridWrapperLeft = styled.div`
 const GridWrapperRight = styled.div`
   // width: 270px;
 `;
-
 
 const LeftTopBox = styled.div`
   position:relative;
@@ -221,14 +220,17 @@ const SemiImg = styled.img`
 
 // ******************************************************
 const Featured = () => {
+
+  const {t} = useTranslation();
+
   return (
     <FeaturedSection className="featured">
       <div className="container">
         <FeaturedTitle className="places-best__heading">
-          Featured Destinations
+        {t('FeaturedTitle')}
         </FeaturedTitle>
         <FeaturedText className="places-best__desc">
-          Popular destinations open to visitors from Indonesia
+          {t('FeaturedText')}
         </FeaturedText>
 
 
@@ -238,8 +240,8 @@ const Featured = () => {
               <img src="../../../assets/img/feat-long.jpg" alt="city pic" />
               <button>3.5</button>
               <div>
-              <h4>Barcelona Tour</h4>
-              <p><img src='../../../assets/img/avatar-1.jpg' alt="city pic"/> 196 Activities</p>
+              <h4> {t('Barselona')}</h4>
+              <p><img src='../../../assets/img/avatar-1.jpg' alt="city pic"/> 196 {t('FeaturedTitle')}</p>
               </div>
 
             </LeftTopBox>
@@ -249,8 +251,8 @@ const Featured = () => {
                 <SemiImg src="../../../assets/img/feat-semi-1.jpg" alt="city pic" />
                 <button>3.5</button>
                 <div>
-                <h4>London, United State</h4>
-                <p><img src='../../../assets/img/avatar-2.jpg' alt="city pic" /> 196 Activities</p>
+                <h4>{t('London')}</h4>
+                <p><img src='../../../assets/img/avatar-2.jpg' alt="city pic" /> 196  {t('Activities')}</p>
                 </div>
               </SemiImgWrapper>
 
@@ -258,8 +260,8 @@ const Featured = () => {
              <SemiImg src="../../../assets/img/feat-semi-2.jpg" alt="city pic" />
               <button>3.5</button>
               <div>
-              <h4>Australia Tour</h4>
-              <p><img src='../../../assets/img/avatar-2.jpg' alt="city pic"/> 196 Activities</p>
+              <h4> {t('Australia')}</h4>
+              <p><img src='../../../assets/img/avatar-2.jpg' alt="city pic"/> 196  {t('Activities')}</p>
               </div>
               </SemiImgWrapper>
 
@@ -271,8 +273,8 @@ const Featured = () => {
               <SmallImg src="../../../assets/img/feat-small-1.jpg" alt="city pic" />
               <button>3.5</button>
               <div>
-              <h4>Australia Tour</h4>
-              <p><img src='../../../assets/img/avatar-2.jpg' /> 196 Activities</p>
+              <h4>{t('Australia')}</h4>
+              <p><img src='../../../assets/img/avatar-2.jpg' alt="avatar"/> 196  {t('Activities')}</p>
               </div>
             </SmallImgWrapper>
 
@@ -280,8 +282,8 @@ const Featured = () => {
               <SmallImg src="../../../assets/img/feat-small-2.jpg" alt="city pic" />
               <button>3.5</button>
               <div>
-              <h4>Japan Tour</h4>
-              <p><img src='../../../assets/img/avatar-2.jpg' /> 196 Activities</p>
+              <h4>{t('Japan')}</h4>
+              <p><img src='../../../assets/img/avatar-2.jpg' alt="avatar" /> 196  {t('Activities')}</p>
               </div>
             </SmallImgWrapper>
 
@@ -289,13 +291,12 @@ const Featured = () => {
               <SmallImg src="../../../assets/img/feat-small-3.jpg" alt="city pic" />
               <button>3.5</button>
               <div>
-              <h4>Japan Tour</h4>
-              <p><img src='../../../assets/img/avatar-2.jpg' alt="city pic"/> 196 Activities</p>
+              <h4>{t('Japan')}</h4>
+              <p><img src='../../../assets/img/avatar-2.jpg' alt="city pic"/> 196  {t('Activities')}</p>
               </div>
             </SmallImgWrapper>
           </GridWrapperRight>
         </GridWrapper>
-
       </div>
     </FeaturedSection>
   );

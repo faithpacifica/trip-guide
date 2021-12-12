@@ -1,3 +1,21 @@
 .swiper-container-horizontal > .swiper-scrollbar{
   display:none;
 }
+
+.swiper-next-button, .swiper-prev-button{
+  border:0;
+  background-color: #F4F5F6;
+  color:#84878B;
+  padding:10px 12px;
+  border-radius:50%;
+  border: 1px solid #E6E8EC;
+
+}
+
+.swiper-prev-button{
+  margin-right: 10px;
+}
+
+.swiper-next-button{
+  background-color:#E6E8EC;
+}

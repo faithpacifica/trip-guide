@@ -1,7 +1,7 @@
 import React from 'react';
 import CTA from '../components/CTA/CTA';
 import styled from "styled-components";
-
+import { useTranslation } from 'react-i18next';
 // ***********************************************************
 const FLightSection = styled.div`
 padding-top:150px;
@@ -15,9 +15,11 @@ padding-top:150px;
 
 // ****************************************************************
 const Flight = () => {
+
+    const {t} = useTranslation();
     return (
         <FLightSection>
-            This is Flight Page
+          {t('FlightPage')}
             <CTA/>
         </FLightSection>
     );

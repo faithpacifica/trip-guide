@@ -2,14 +2,15 @@ import React from "react";
 import "./travelpassion.css";
 import styled from "styled-components";
 import { AiFillStar } from "react-icons/ai";
-import { useContext } from "react";
-import { ThemeContext } from "styled-components";
+// import { useContext } from "react";
+// import { ThemeContext } from "styled-components";
+import { useTranslation } from 'react-i18next';
 
 
 // **************************************************************
 const TravelPassionSection = styled.section`
-  padding:  70px 0 250px 0;
-  margin-bottom: -250px;
+  padding:  70px 0 300px 0;
+  margin-bottom: -355px;
   background-color:${(props) => props.theme.PassionBg};
 `;
 
@@ -86,23 +87,25 @@ align-items:center;
 
 // ****************************************************************
 const TravelPassion = () => {
+  const {t} = useTranslation();
+
   return (
     <TravelPassionSection className="travel-passion__section">
       <div className="container">
         <TravelPassionTitle className="places-best__heading">
-          Travel Your Passion
+           {t('introTitle')}
         </TravelPassionTitle>
         <TravelPassionText className="places-best__desc">
-          Most Brilliant reasons Entrada should be your one-stop-shop!
+        {t('passionText')}
         </TravelPassionText>
 
         <GridWrapper className="grid-wrapper">
           <ImgWrapper>
             <Img src="../../../assets/img/passion-1.jpg" alt="city pic" width ='270' height='323' />
             <div>
-              <h4>Beach Hobby</h4>
+              <h4> {t('beachHobby')}</h4>
               <Review>
-                 <AiFillStar style={{ color: "#FFD166", fontSize: "16px", display:'block', marginRight:'12px'}} />
+                 <AiFillStar className='star' style={{ color: "#FFD166", fontSize: "16px", display:'block', marginRight:'12px'}} />
                 <span> 4.8 (122 reviews)</span>
               </Review>
             </div>
@@ -111,9 +114,9 @@ const TravelPassion = () => {
           <ImgWrapper>
             <Img src="../../../assets/img/passion-2.jpg" alt="city pic" width ='270' height='323' />
             <div>
-              <h4>City Tours</h4>
+              <h4> {t('cityTour')}</h4>
               <Review>
-                 <AiFillStar style={{ color: "#FFD166", fontSize: "16px", display:'block', marginRight:'12px'}} />
+                 <AiFillStar className='star' style={{ color: "#FFD166", fontSize: "16px", display:'block', marginRight:'12px'}} />
                 <span> 4.8 (122 reviews)</span>
               </Review>
             </div>
@@ -121,9 +124,9 @@ const TravelPassion = () => {
           <ImgWrapper>
             <Img src="../../../assets/img/passion-3.jpg" alt="city pic" width ='270' height='323' />
             <div>
-              <h4>Hiking Trips</h4>
+              <h4>{t('hikingTrips')}</h4>
               <Review>
-                 <AiFillStar style={{ color: "#FFD166", fontSize: "16px", display:'block', marginRight:'12px'}} />
+                 <AiFillStar  className='star' style={{ color: "#FFD166", fontSize: "16px", display:'block', marginRight:'12px'}} />
                 <span> 4.8 (122 reviews)</span>
               </Review>
             </div>
@@ -131,9 +134,9 @@ const TravelPassion = () => {
           <ImgWrapper>
             <Img src="../../../assets/img/passion-4.jpg" alt="city pic" width ='270' height='323' />
             <div>
-              <h4>Sports Trips</h4>
+              <h4>{t('sportsTrips')}</h4>
               <Review>
-                 <AiFillStar style={{ color: "#FFD166", fontSize: "16px", display:'block', marginRight:'12px'}} />
+                 <AiFillStar className='star' style={{ color: "#FFD166", fontSize: "16px", display:'block', marginRight:'12px'}} />
                 <span> 4.8 (122 reviews)</span>
               </Review>
             </div>

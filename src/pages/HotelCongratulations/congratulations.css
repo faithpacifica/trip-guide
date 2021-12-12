@@ -22,3 +22,7 @@ hr{
   margin:0;
   margin-bottom:25px;
 }
+
+.star{
+  fill:yellow !important;
+}

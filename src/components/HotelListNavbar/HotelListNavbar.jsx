@@ -3,7 +3,6 @@ import styled from "styled-components";
 import "./hotellistnavbar.css";
 import DayPickerInput from "react-day-picker/DayPickerInput";
 import "react-day-picker/lib/style.css";
-import FloatingLabel from "react-bootstrap/FloatingLabel";
 import { useRef } from "react";
 import { useState, useEffect } from "react";
 import "react-calendar/dist/Calendar.css";
@@ -13,6 +12,8 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { IoIosArrowDown } from "react-icons/io";
 import { useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
+import Select, { components } from "react-select";
+import { GrLocation } from "react-icons/gr";
 
 
 // **************************************************
@@ -22,17 +23,11 @@ const ListNavbar = styled.div`
   border-radius: 20px;
   margin-top: 60px;
   padding: 30px 50px;
-  //   position: relative;
-  //   display: flex;
-  //   flex-wrap:wrap;
-  //   justify-content: space-between;
-  //   align-items: end;
 `;
 
 const DivBox = styled.div`
   display: flex;
   flex-direction: column;
-  //   max-width: 150px;
 `;
 
 const NavWrapper = styled.div`
@@ -140,7 +135,90 @@ const Left = styled.div`
   flex-direction: column;
 `;
 
+const SelectField = styled.div`
+background-color:${(props) => props.theme.selectBg} ;
+border-radius: 8px;
+white-space:nowrap;
+text-overflow:ellipsis;
+font-weight: 500;
+font-size: 18px;
+line-height: 24px;
+color:${(props) => props.theme.selectColor};
+&:not(:last-child) {
+    margin-right: 8px;
+}
+.css-b62m3t-container{
+    // width:260px;
+}
+.css-319lph-ValueContainer {
+    padding:0;
+}
+
+.css-6j8wv5-Input{
+    padding:0;
+    margin:0;
+}
+.css-tlfecz-indicatorContainer {
+    padding:0;
+}
+.css-1s2u09g-control{
+    min-height:19px;
+    padding-top:px;
+    background-color:transparent;
+    border:transparent;
+}
+.css-1hb7zxy-IndicatorsContainer {
+    display:none;
+}
+.css-14el2xx-placeholder {
+    color:${(props) => props.theme.selectColor};
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+}
+.css-1okebmr-indicatorSeparator {
+    background-color:transparent;
+    border:transparent;
+    margin:0;
+}
+.css-1f43avz-a11yText-A11yText{
+  border:none;
+}
+.css-26l3qy-menu{
+  background-color:white;
+  opacity:1;
+  z-index:9999;
+}
+.css-4ljt47-MenuList{
+  z-index:5555;
+}
+.css-yt9ioa-option{
+  background-color:${(props) => props.theme.selectBg} ;
+}
+.css-1s2u09g-control{
+  background-color:${(props) => props.theme.selectBg} ;
+}
+`;
+
+// ********************************************************
+const options = [
+  { value: "Dubai", label: "Dubai"},
+  { value: "France", label: "France"},
+  { value: "Bali", label: "Bali"},
+  { value: "Turkey",label: "Turkey"},
+  { value: "Malaysia",label: "Malaysia"}
+];
+
+const { Option } = components;
+const IconOption = props => (
+  <Option {...props}>
+     <GrLocation style={{color:'#777E91', marginRight:'5px'}}/>
+    {props.data.label}
+  </Option>
+);
 // ***************************************************
+
+
 const HotelListNavbar = () => {
   let navigate = useNavigate();
   const { t } = useTranslation();
@@ -156,30 +234,30 @@ const HotelListNavbar = () => {
   useEffect(() => {
     locationRef.current.value = "Where are you from?";
     checkInRef.current.DefaultValue = "Add in";
+    checkOutRef.current.DefaultValue = "Add in";
   });
 
   function handleFormSubmit(evt) {
     evt.preventDefault();
-    console.log(locationRef.current.value);
+    console.log(locationRef.current.props.value);
     console.log(checkOutRef.current.state.value);
     console.log(checkInRef.current.state.value);
 
-    // TODO:uzgarishlarni SearchNavbar dan olish
 
     setTimeout(() => {
       navigate("/hotellist");
-    }, 4000);
+    }, 3000);
   }
 
   const handlePassengerModal2 = (el) => {
     console.log(el);
-    if (el.target.className == "passenger") {
+    if (el.target.className === "passenger") {
       el.target.className = "passenger modalAppear2";
-    } else if (el.target.className == "passenger modalAppear ") {
-      el.target.className = "passenger ";
+    } else if (el.target.className === "passenger modalAppear2") {
+      el.target.className = "passenger";
     }
   };
-  // TODO: strelka va modal ishlamayapti
+  // TODO: strelka va modal
 
   // *******************************************************
   return (
@@ -191,14 +269,15 @@ const HotelListNavbar = () => {
             <span className="passengerSpan">
               {adult + infant + children}
             </span>
-            Passenger <IoIosArrowDown />
+            {t('passenger')} 
+            <IoIosArrowDown />
           </button>
 
           <PassengerModal className="passenger-modal2">
             <LineWrapper className="line-wrapper">
               <Left>
-                <Type className="text">Adults</Type>
-                <AgeType className="age">Ages 13 or above</AgeType>
+                <Type className="text">{t('Adults')}</Type>
+                <AgeType className="age">{t('13above')}</AgeType>
               </Left>
               <div>
                 <Button
@@ -223,8 +302,8 @@ const HotelListNavbar = () => {
 
             <LineWrapper className="line-wrapper">
               <Left>
-                <Type className="text">Children</Type>
-                <AgeType className="age">Ages 2-12</AgeType>
+                <Type className="text">{t('Children')}</Type>
+                <AgeType className="age">{t('ageTill12')}</AgeType>
               </Left>
               <div>
                 <Button
@@ -249,8 +328,8 @@ const HotelListNavbar = () => {
 
             <LineWrapper className="line-wrapper">
               <Left>
-                <Type className="text">Infants</Type>
-                <AgeType className="age">under 2</AgeType>
+                <Type className="text">{t('Infants')}</Type>
+                <AgeType className="age"> {t('under2')}</AgeType>
               </Left>
               <div>
                 <Button
@@ -275,6 +354,8 @@ const HotelListNavbar = () => {
           </PassengerModal>
         </NavWrapper>
 
+{/* FORM */}
+
         <form onSubmit={handleFormSubmit}>
           <FormInner>
             <NavBottom className="nav-bottom">
@@ -282,17 +363,15 @@ const HotelListNavbar = () => {
                 <div className="search-content">
                   <SelectWrapper className="select-wrapper">
                     <Field className="field select-field">
-                      <FieldLabel>Location</FieldLabel>
-                      <FloatingLabel controlId="floatingSelect">
-                        <select ref={locationRef}>
-                          <option disabled selected>
-                            Where are you from?
-                          </option>
-                          <option value="1">Dubai</option>
-                          <option value="2">Turkey</option>
-                          <option value="3">France</option>
-                        </select>
-                      </FloatingLabel>
+                      <FieldLabel>{t('Location')}</FieldLabel>
+                 
+                      <SelectField>
+                          <Select  ref={locationRef} 
+                          placeholder={t('Where')}
+                            options={options}
+                            components={{ Option: IconOption }}
+                           />
+                      </SelectField>
                     </Field>
 
                     <CgArrowsExchange
@@ -310,7 +389,7 @@ const HotelListNavbar = () => {
 
                     <Field className="field check-field">
                       <FieldLabel> Check in</FieldLabel>
-                      <DayPickerInput ref={checkInRef} placeholder="Add Date" />
+                      <DayPickerInput ref={checkInRef} placeholder={t('AddDate')}/>
                     </Field>
 
                     <CgArrowsExchange
@@ -330,7 +409,7 @@ const HotelListNavbar = () => {
                       <FieldLabel> Check out</FieldLabel>
                       <DayPickerInput
                         ref={checkOutRef}
-                        placeholder="Add Date"
+                        placeholder={t('AddDate')}
                       />
                     </Field>
                   </SelectWrapper>
@@ -340,7 +419,7 @@ const HotelListNavbar = () => {
 
             <DivBox className="div-box">
               <SubmitButton variant="" type="submit">
-                Search
+              {t('Search')} 
               </SubmitButton>
             </DivBox>
           </FormInner>

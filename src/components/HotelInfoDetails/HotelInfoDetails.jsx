@@ -12,10 +12,11 @@ import { ImSpoonKnife } from "react-icons/im";
 import { RiHotelBedLine } from "react-icons/ri";
 import { TiArrowSync } from "react-icons/ti";
 import { AiOutlineLaptop } from "react-icons/ai";
-import { GrPersonalComputer } from "react-icons/gr";
 import { RiComputerLine } from "react-icons/ri";
 import { FaPizzaSlice } from "react-icons/fa";
 import { FaRegBuilding } from "react-icons/fa";
+import { useTranslation } from 'react-i18next';
+
 
 // ***************************************************
 
@@ -47,29 +48,29 @@ const TagsAndReview = styled.div`
     border: none;
     &:nth-child(1) {
       color: #38b345;
-      padding: 0 5.5px 0 5.5px;
-      background-color: rgba(56, 179, 69, 0.1);
+      padding: 2px 7.5px 2px 7.5px;
+      background-color:${(props) => props.theme.detailButtonbg1} ;
     }
     &:nth-child(2) {
       color: #fd9704;
       border-radius: 5px;
-      padding: 0 8.5px 0 8.5px;
-      background-color: rgba(253, 151, 4, 0.1);
+      padding: 2px 8.5px 2px 8.5px;
+      background-color:${(props) => props.theme.detailButtonbg2}  ;
     }
     &:nth-child(3) {
       color: #0b3ba7;
-      padding: 0 15.5px 0 15.5px;
-      background-color: rgba(234, 238, 250, 0.9);
+      padding: 2px 15.5px 2px 15.5px;
+      background-color:${(props) => props.theme.detailButtonbg3} ;
     }
     &:nth-child(4) {
       color: #e96594;
-      padding: 0 20px 0 20px;
-      background-color: rgba(252, 235, 241, 0.9);
+      padding: 2px 20px 2px 20px;
+      background-color: ${(props) => props.theme.detailButtonbg4} ;
     }
     &:nth-child(5) {
       color: #dc6e3d;
-      padding: 0 18px 0 18px;
-      background-color: rgba(251, 238, 232, 0.9);
+      padding: 2px 18px 2px 18px;
+      background-color:${(props) => props.theme.detailButtonbg5}  ;
     }
   }
 `;
@@ -96,13 +97,6 @@ const Hr = styled.hr`
   margin-bottom: 30px;
 `;
 
-const TabContent = styled.div`
-  font-size: 16px;
-  line-height: 24px;
-  color: #353945;
-  margin-bottom: 40px;
-`;
-
 const HotelFeatures = styled.h5`
   font-size: 24px;
   line-height: 36px;
@@ -118,7 +112,8 @@ const FeatureDetail = styled.div`
   color: ${(props) => props.theme.WifiIconColor};
   margin-right: 50px;
   span {
-    color: #4f4f4f;
+    color: ${(props) => props.theme.iconText};
+    
   }
 `;
 const FeaturesType = styled.div`
@@ -133,7 +128,7 @@ margin-bottom: 28px;
 font-weight: 500;
 font-size: 24px;
 line-height: 36px;
-color: #23262f;
+color: ${(props) => props.theme.FeatureDetailsTitle};
 `;
 
 const AmenityDetails = styled.div`
@@ -152,7 +147,7 @@ align-items: center;
 span {
   font-size: 16px;
   line-height: 24px;
-  color: #353945;
+  color: ${(props) => props.theme.iconText};
 }
 `;
 
@@ -167,9 +162,59 @@ background-color: #3b71fe;
 border-radius: 47px;
 `;
 
+const TabStyleWrapper = styled.div`
+.nav-item .nav-link .active{
+  color:  #145CE6;
+}
+.nav-item .nav-link {
+  /* color: #23262F; */
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.nav-link.active{
+  color: ${(props) => props.theme.tabPaneTitle};
+}
+
+.nav-tabs .nav-link{
+  position:relative;
+  background-color: none !important;
+  border-color: none !important;
+  color: ${(props) => props.theme.FeatureDetailsTitle};
+
+}
+.nav-tabs .nav-link.active{
+  color: ${(props) => props.theme.tabPaneTitle};
+  background: none !important;
+  border: none !important;
+  transition:all 0.4s ease;
+  &:after{
+    content:'';
+    position:absolute;
+    top:40px;
+    left:0;
+    height:2px;
+    background: ${(props) => props.theme.tabPaneTitle};
+    width:100%;
+    
+  }
+}
+.nav-tabs {
+ padding-bottom:15px;
+  border-bottom: 1px solid #84878b;
+}
+
+.tab-content .tab-pane {
+  color: ${(props) => props.theme.tabPaneColor} 
+}
+`;
 
 // *****************************************************
-const HotelInfoDetails = () => {
+const HotelInfoDetails = ({prop}) => {
+
+  const {t} = useTranslation();
+
   const ratingChanged = (newRating) => {
     console.log(newRating);
   };
@@ -178,11 +223,11 @@ const HotelInfoDetails = () => {
     <>
       <SingleHotelInfo>
         <TagsAndReview>
-          <Button variant="">5.0</Button>
-          <Button variant="">Perfect</Button>
-          <Button variant="">Hotels</Button>
-          <Button variant="">Building</Button>
-          <Button variant="">Top value</Button>
+          <Button variant="">{prop.rating}</Button>
+          <Button variant="">{t('perfect')}</Button>
+          <Button variant="">{t('label-hotel')}</Button>
+          <Button variant="">{t('Building')}</Button>
+          <Button variant="">{t('topValue')}</Button>
           <StarReview>
             <ReactStars
               count={5}
@@ -194,28 +239,32 @@ const HotelInfoDetails = () => {
           </StarReview>
         </TagsAndReview>
 
-        <SingleHotelInfoTitle>Exclusive room in house</SingleHotelInfoTitle>
-        <HotelLocation>Zurich, Switzerland</HotelLocation>
+        <SingleHotelInfoTitle>{t('exlusiveTitle')}</SingleHotelInfoTitle>
+        <HotelLocation>{prop.location}</HotelLocation>
         <Hr />
-        <Tabs
+        <TabStyleWrapper>
+         <Tabs
           defaultActiveKey="Description"
           transition={false}
           id="noanim-tab-example"
           className="mb-3"
         >
-          <Tab className="active" eventKey="Description" title="Description">
+          {/* TODO:Tabni oq-qorasini tugirlash */}
+          <Tab className="active" eventKey="Description" title={t('description')}>
             Arabian Park Hotel is a great choice for travellers looking for a 3
             star hotel in Dubai. It is located in Bur Dubai. This Hotel stands
             out as one of the highly recom.2 kms), Al Wasl Indoor Stadium (1.2
             kms), Dubai Mall (5.4 kms), Jumeirah Beach Park (9.6 kms) and
             Jumeirah Public Beach (15.8 kms).
           </Tab>
-          <Tab eventKey="Features" title="Features"></Tab>
-          <Tab eventKey="Room & Price" title="Room & Price"></Tab>
-          <Tab eventKey="Review" title="Review"></Tab>
+          <Tab eventKey="Features" title= {t('features')}></Tab>
+          <Tab eventKey="Room & Price" title= {t('roomAndprice')}></Tab>
+          <Tab eventKey="Review" title= {t('review')}></Tab>
         </Tabs>
+        </TabStyleWrapper>
 
-        <HotelFeatures>Hotel Features</HotelFeatures>
+
+        <HotelFeatures>{t('hotel-features')}</HotelFeatures>
 
         <FeaturesType>
           <FeatureDetail>
@@ -237,7 +286,7 @@ const HotelInfoDetails = () => {
                 fontSize: "22px",
               }}
             />
-            <span> Bathtub</span>
+            <span> {t('bathup')}</span>
           </FeatureDetail>
 
           <FeatureDetail>
@@ -248,7 +297,7 @@ const HotelInfoDetails = () => {
                 fontSize: "22px",
               }}
             />
-            <span>Breakfast</span>
+            <span>{t('breakfast')}</span>
           </FeatureDetail>
 
           <FeatureDetail>
@@ -259,7 +308,7 @@ const HotelInfoDetails = () => {
                 fontSize: "22px",
               }}
             />
-            <span>Kings bed</span>
+            <span>{t('kinsbed')}</span>
           </FeatureDetail>
 
           <FeatureDetail>
@@ -275,7 +324,7 @@ const HotelInfoDetails = () => {
         </FeaturesType>
         <Hr />
 
-        <Amenities>Amenities</Amenities>
+        <Amenities>{t('amenities')}</Amenities>
         <AmenityDetails>
           <Left>
             <AmenityType>
@@ -286,7 +335,7 @@ const HotelInfoDetails = () => {
                   fontSize: "22px",
                 }}
               />
-              <span> Free wifi 24/7</span>
+              <span> {t('freewifi')} 24/7</span>
             </AmenityType>
 
             <AmenityType>
@@ -297,18 +346,18 @@ const HotelInfoDetails = () => {
                   fontSize: "22px",
                 }}
               />
-              <span>Free computer</span>
+              <span>{t('freeComp')}</span>
             </AmenityType>
 
             <AmenityType>
-              <GrPersonalComputer
+              <AiOutlineLaptop
                 style={{
                   color: "#353945",
                   marginRight: "10px",
                   fontSize: "22px",
                 }}
               />
-              <span>Free wifi 24/7</span>
+              <span>{t('freewifi')}  24/7</span>
             </AmenityType>
 
             <AmenityType>
@@ -319,7 +368,7 @@ const HotelInfoDetails = () => {
                   fontSize: "22px",
                 }}
               />
-              <span>Free wifi 24/7</span>
+              <span>{t('freewifi')} 24/7</span>
             </AmenityType>
           </Left>
 
@@ -332,7 +381,7 @@ const HotelInfoDetails = () => {
                   fontSize: "22px",
                 }}
               />
-              <span> Free clean bathroom</span>
+              <span>{t('freeBathroom')} </span>
             </AmenityType>
 
             <AmenityType>
@@ -343,7 +392,7 @@ const HotelInfoDetails = () => {
                   fontSize: "22px",
                 }}
               />
-              <span>Breakfast included</span>
+              <span>{t('breakfastIncluded')}</span>
             </AmenityType>
 
             <AmenityType>
@@ -365,12 +414,12 @@ const HotelInfoDetails = () => {
                   fontSize: "22px",
                 }}
               />
-              <span>Nearby city</span>
+              <span>{t('nearby')}</span>
             </AmenityType>
           </Right>
         </AmenityDetails>
 
-        <MoreDetailsButton>More details</MoreDetailsButton>
+        <MoreDetailsButton>{t('moredatails')}</MoreDetailsButton>
       </SingleHotelInfo>
     </>
   );
