@@ -43,7 +43,7 @@ const Language = styled.div`
       color:  ${(props) => props.theme.PlacesCardTitle};
     }
     .dropdown-item{
-      background: rgba(53, 57, 69, 0.2);
+      background: ${(props) => props.theme.dropdownMenuShow};
     }
     .dropdown-item:hover{
       background: rgba(53, 57, 69, 0.2);
@@ -98,7 +98,7 @@ const Currency = styled.div`
       color:  ${(props) => props.theme.PlacesCardTitle};
     }
     .dropdown-item{
-      background: rgba(53, 57, 69, 0.2);
+      background: ${(props) => props.theme.dropdownMenuShow};
     }
     .dropdown-item:hover{
       background: rgba(53, 57, 69, 0.2);
@@ -148,7 +148,7 @@ color: #3B3E44;
         color:  ${(props) => props.theme.PlacesCardTitle};
       }
       .dropdown-item{
-        background: rgba(53, 57, 69, 0.2);
+        background: ${(props) => props.theme.dropdownMenuShow};
       }
       .dropdown-item:hover{
         background: rgba(53, 57, 69, 0.2);

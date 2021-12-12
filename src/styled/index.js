@@ -19,6 +19,7 @@ label:${(props) => props.theme.FilterLabel}
 
 
 export const DarkTheme = {
+    dropdownMenuShow:"#222529",
     tabPaneTitle:'#145CE6',
     tabPaneColor:' #B1B5C4',
     calendarLabel:' #fcfcfd',
@@ -94,6 +95,7 @@ export const DarkTheme = {
 };
 
 export const LightTheme = {
+     dropdownMenuShow:"#fff",
     tabPaneTitle:'#145CE6',
     tabPaneColor:' #353945 ',
     calendarLabel:'#141416',

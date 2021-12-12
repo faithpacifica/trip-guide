@@ -201,6 +201,7 @@ const HotelListFilter = () => {
   },[]
   
  ); 
+ 
  const handleChange = ((el) =>{
          setRange(el.target.value );
          console.log(el.target.value);
