@@ -9,7 +9,7 @@ import Col from 'react-bootstrap/Col';
 import apiCalls from "../../config/api";
 import { useEffect, useState } from "react";
 import { useTranslation } from 'react-i18next';
-
+import Loader from '../Loader';
  // ****************************************************
 
 const ListFilter = styled.div`
@@ -227,7 +227,9 @@ const HotelListFilter = () => {
 
         <PopularFilter>
           <Title>  {t('popular_filter')}</Title>
-          
+         { error ?  <p className="error-message">{error}</p> :''}
+         {isLoading ? <Loader/> :''}
+         {!isLoading && !error ? 
              <Form.Group className="mb-3" id="formGridCheckbox">
                 { popularFilter.map((el) =>
                     <PopularFilterField key = {el.id}>
@@ -241,7 +243,9 @@ const HotelListFilter = () => {
                       <label>{el.name}</label> 
                 </PopularFilterField>
            ) } 
+         
         </Form.Group>
+          :''}
           <Button variant=""> {t('see_more')}</Button>
         </PopularFilter>
         <Hr />
