@@ -63,7 +63,9 @@ const HotelList = () => {
     const {t} = useTranslation();
 
     const [hotels,setHotels] = useState([]);
+
     const [extraHotels, setExtraHotels] = useState([]);
+    
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState();
  
