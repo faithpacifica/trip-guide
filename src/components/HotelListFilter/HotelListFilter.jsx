@@ -239,8 +239,9 @@ const HotelListFilter = () => {
                           type="checkbox"
                           label={el.label}
                           aria-label={el.name}
+                          id="in"
                       />
-                      <label>{el.name}</label> 
+                      <label for="in">{el.name}</label> 
                 </PopularFilterField>
            ) } 
          

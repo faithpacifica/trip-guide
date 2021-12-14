@@ -25,7 +25,7 @@ const App = () => {
 
   return (
     <div className="App">
-     <Suspense fallback=" loading">
+     <Suspense fallback ="loading">
       <ThemeContext.Provider value={{ theme, toggleTheme }}  >
         <ThemeProvider theme = {theme === 'light' ? LightTheme : DarkTheme}>
           <div className={`app wrapper - ${theme}`}>

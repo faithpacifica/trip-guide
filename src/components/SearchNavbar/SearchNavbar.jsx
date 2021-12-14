@@ -27,7 +27,7 @@ const SearchNavbarSection = styled.section`
   background-color: ${(props) => props.theme.SearchNavbarBg};
   border-radius: 20px;
   padding: 30px 50px;
-  position: relative;s
+  position: relative;
   bottom: 100px;
   box-shadow: 0px 12px 60px rgba(89, 89, 89, 0.1);
   display: flex;
